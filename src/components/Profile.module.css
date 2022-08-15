@@ -1,0 +1,13 @@
+
+.content {
+    grid-area: c;
+    background-color: #FFFFFF;
+}
+
+.content img {
+    width: 1450px;
+}
+
+.item {
+    color: green;
+}
