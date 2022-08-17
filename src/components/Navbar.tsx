@@ -1,12 +1,6 @@
 import React from 'react';
 import s from "./Navbar.module.css";
 
-// let s ={
-//     'nav':'Navbar_nav__F987c',
-//     'item':'Navbar_item__EWpFL'
-// }
-
-
 export const Navbar = () => {
     return (
         <nav className={s.nav}>
