@@ -1,41 +1,39 @@
 import React from 'react';
 import s from './Dialogs.module.css'
-import {NavLink} from "react-router-dom";
 
-
-export const DialodItem = (props: any) => {
-    let path = "/dialogs/" + props.id;
-    return (
-        <div className={s.dialog + ' ' + s.active}>
-            <NavLink to={path}>{props.name}</NavLink>
-        </div>
-    )
-}
-
-export const Message = (props: any) => {
-    return (
-        <div className={s.dialog}>{props.message}</div>
-    )
-}
+import {DialodItem} from "./DialogItem/DialogItem";
+import {Message} from "./Message/Message";
 
 export const Dialogs = (props: any) => {
+
+    let dialogs = [
+        {id: 1, name: 'Dima'},
+        {id: 2, name: 'Andrey'},
+        {id: 3, name: 'Olga'},
+        {id: 4, name: 'Ilya'},
+        {id: 5, name: 'Inga'},
+        {id: 6, name: 'Vova'}
+    ]
+    let messages = [
+        {id: 1, message: 'Hi'},
+        {id: 2, message: 'Yo'},
+        {id: 3, message: 'Hi Bro'},
+        {id: 4, message: 'Im Faen'},
+        {id: 5, message: 'Favoeite'},
+        {id: 6, message: 'Gang'}
+    ]
+
+    let dialogElements = dialogs.map(d => <DialodItem name={d.name} id={d.id}/>)
+    let messagesElements = messages.map(m => <Message message={m.message}/>)
+
+
     return (
         <div className={s.dialogs}>
             <div className={s.dialogsItems}>
-                <DialodItem name="Dima" id="1"/>
-                <DialodItem name="Andrey" id="2"/>
-                <DialodItem name="Olga" id="3"/>
-                <DialodItem name="Ilya" id="4"/>
-                <DialodItem name="Inga" id="5"/>
-                <DialodItem name="Vova" id="6"/>
+                {dialogElements}
             </div>
             <div className={s.messages}>
-                <Message message="Hi"/>
-                <Message message="Yo"/>
-                <Message message="Hi Bro"/>
-                <Message message="Im Faen"/>
-                <Message message="Favoeite"/>
-                <Message message="Gang"/>
+                {messagesElements}
             </div>
         </div>
     )

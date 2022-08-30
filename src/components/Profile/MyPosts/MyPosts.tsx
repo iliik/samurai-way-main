@@ -2,7 +2,12 @@ import React from 'react';
 import s from './MyPosts.module.css';
 import {Post} from "./Posts/Post";
 
-export const MyPosts = () => {
+
+
+export const MyPosts = (props) => {
+
+    let postsElement = props.posts.map(p=><Post messages={p.message} likesCount={p.likesCount} />)
+
     return (
         <div className={s.postsBloc}>
             <h3>My Posts</h3>
@@ -12,8 +17,7 @@ export const MyPosts = () => {
                 <button>Remuve</button>
             </div>
             <div className={s.post}>
-                <Post messages="Hi, how are you" likesCount="like 22"/>
-                <Post messages="Hi, Im faen" likesCount=" like 14"/>
+                {postsElement}
             </div>
         </div>
     )
