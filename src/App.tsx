@@ -17,17 +17,16 @@ const App = () => {
     let posts = state.profilePage.posts
 
     return (
-        <BrowserRouter>
-            <div className="app-wrapper">
-                <Header/>
-                <Navbar/>
-                <div className='app-wrapper-content'>
-                    <Route path='/dialogs' render={() => <Dialogs dialog={dialog}/>}/>
-                    <Route path='/profile' render={() => <Profile profile={profile} posts={posts}/>}/>
-                </div>
+        <div className="app-wrapper">
+            <Header/>
+            <Navbar/>
+            <div className='app-wrapper-content'>
+                <Route path='/dialogs' render={() =>
+                    <Dialogs dialog={dialog}/>}/>
+                <Route path='/profile' render={() =>
+                    <Profile profile={profile} posts={posts}/>}/>
             </div>
-        </BrowserRouter>
-
+        </div>
     );
 }
 

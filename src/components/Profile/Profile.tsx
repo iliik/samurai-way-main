@@ -7,9 +7,7 @@ import {PostType, state} from "../../Redux/State";
 type ProfilePageType = {
     profile: PostType[]
     posts: PostType[]
-
 }
-
 
 export const Profile = (props: ProfilePageType) => {
 

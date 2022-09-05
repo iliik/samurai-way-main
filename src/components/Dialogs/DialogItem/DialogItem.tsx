@@ -6,7 +6,11 @@ export const DialodItem = (props: any) => {
     let path = "/dialogs/" + props.id;
     return (
         <div className={s.dialog + ' ' + s.active}>
-            <NavLink to={path}>{props.name}</NavLink>
+            <NavLink to={path}>
+                <img
+                    src={'https://vraki.net/sites/default/files/inline/images/avatarki-dlya-muzhchin-sereznye-podborka-foto-026.jpg'}/>
+                {props.name}
+            </NavLink>
         </div>
     )
 }

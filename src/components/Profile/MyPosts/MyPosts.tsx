@@ -13,16 +13,18 @@ type ProfilePageType = {
 
 export const MyPosts = (props: ProfilePageType) => {
 
-    let id = state.profilePage.posts
-
     let postsElements = props.profile.map(p =>
         <Post id={p.id} likesCount={p.likesCount} message={p.message}/>)
+    let onChangeHandler = () => {
+
+    }
+
 
     return (
         <div className={s.postsBloc}>
             <h3>MyPost</h3>
             <div>
-                <div><textarea></textarea></div>
+                <div><textarea onChange={onChangeHandler}></textarea></div>
                 <button>Add Post</button>
                 <button>Remuve</button>
             </div>
