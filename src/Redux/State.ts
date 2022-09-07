@@ -1,3 +1,11 @@
+import App from "../App";
+import {rerenderEntireTree} from "../rerender";
+//
+// export type addPostsType={
+//     id: number
+//     message: string
+//     likesCount: number
+// }
 export type PostType = {
     id?: number
     message: string
@@ -34,11 +42,12 @@ export type RootStateType = {
     sidebar: SidebarType
 }
 
-export let state: RootStateType = {
+ export let state: RootStateType = {
     profilePage: {
         posts: [
             {id: 1, message: "Hi, how are you", likesCount: 22},
-            {id: 2, message: "Hi, Im faen", likesCount: 14}
+            {id: 2, message: "Hi, Im faen", likesCount: 14},
+            {id: 5, message:'iiiiiii', likesCount: 14}
         ]
     },
     dialogsPage: {
@@ -60,4 +69,10 @@ export let state: RootStateType = {
         ]
     },
     sidebar: {}
+     //  addPosts:[
+     //     ],
+
 }
+
+// state.profilePage.posts.push()
+// rerenderEntireTree(state)

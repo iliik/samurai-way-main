@@ -1,22 +1,27 @@
-import React from 'react';
+import React, {ChangeEvent, MouseEvent, useState} from 'react';
 import s from './MyPosts.module.css';
 import {PostType, state} from "../../../Redux/State";
 import {Message} from "../../Dialogs/Message/Message";
 import {Post} from "./Posts/Post";
 
-type ProfilePageType = {
-    profile: PostType[]
+export type MyPostsPropsType={
     posts: PostType[]
 
 }
 
+export const MyPosts = (props: MyPostsPropsType) => {
 
-export const MyPosts = (props: ProfilePageType) => {
-
-    let postsElements = props.profile.map(p =>
+    let postsElements = props.posts.map(p =>
         <Post id={p.id} likesCount={p.likesCount} message={p.message}/>)
-    let onChangeHandler = () => {
+    const [title, setTitle] = useState('')
 
+    let newPostElements= (e:ChangeEvent<HTMLTextAreaElement>)=>{
+        setTitle(e.currentTarget.value)
+
+    }
+
+    let addPost = (e:MouseEvent<HTMLButtonElement>) => {
+        setTitle(title)
     }
 
 
@@ -24,8 +29,8 @@ export const MyPosts = (props: ProfilePageType) => {
         <div className={s.postsBloc}>
             <h3>MyPost</h3>
             <div>
-                <div><textarea onChange={onChangeHandler}></textarea></div>
-                <button>Add Post</button>
+                <div><textarea onChange={newPostElements}></textarea></div>
+                <button onClick={addPost}>Add Post</button>
                 <button>Remuve</button>
             </div>
             <div className={s.post}>
