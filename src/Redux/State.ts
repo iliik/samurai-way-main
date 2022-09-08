@@ -1,13 +1,9 @@
 import App from "../App";
-import {rerenderEntireTree} from "../rerender";
-//
-// export type addPostsType={
-//     id: number
-//     message: string
-//     likesCount: number
-// }
+
+import {renderTree} from "../renderTree";
+
 export type PostType = {
-    id?: number
+    id: number
     message: string
     likesCount: number
 }
@@ -69,10 +65,14 @@ export type RootStateType = {
         ]
     },
     sidebar: {}
-     //  addPosts:[
-     //     ],
-
 }
 
-// state.profilePage.posts.push()
-// rerenderEntireTree(state)
+export const addPost =(postText:string)=>{
+    const newPost:PostType ={
+        id:new Date().getTime(),
+        message: postText,
+        likesCount:0
+    }
+    state.profilePage.posts.push(newPost)
+    renderTree(state)
+}

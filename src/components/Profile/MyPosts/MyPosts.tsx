@@ -6,6 +6,7 @@ import {Post} from "./Posts/Post";
 
 export type MyPostsPropsType={
     posts: PostType[]
+    addPost:PostType
 
 }
 
