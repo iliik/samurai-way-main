@@ -10,7 +10,8 @@ export type DialogsPropsType={
 
 export const Dialogs = (props: DialogsPropsType) => {
 
-    let dialogElements = props.state.dialogs.map(d => <DialodItem name={d.name} id={d.id}/>)
+    let dialogElements = props.state.dialogs.map(d =>
+        <DialodItem name={d.name} id={d.id}/>)
     let messagesElements = props.state.messages.map(m => <Message message={m.message}/>)
 
     const [newMessage, setNewMessage] = useState('')

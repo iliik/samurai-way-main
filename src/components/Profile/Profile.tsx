@@ -14,7 +14,12 @@ export const Profile = (props: ProfilePropsType) => {
     return (
         <div>
             <ProfileInfo/>
-            <MyPosts posts={props.state.posts}  addPost={ props.addPost} />
+            <MyPosts
+                postsData = {props.profilePage.posts}
+                newPostText = {props.newPostText}
+                updateNewPostText={props.updateNewPostText}  //6
+                addPost = {props.addPost}
+            />
         </div>
 
     )

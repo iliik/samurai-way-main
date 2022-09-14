@@ -17,21 +17,21 @@ export type MessageType = {
     id: number
     message: string
 }
-export type SidebarType = {}
 
 export type ProfilePageType = {
-    posts: PostType[]
+    posts: Array<PostType>
+    newPostText?: string
 }
-
 export type DialogPropsType = {
-    dialog: DialogPageType
+    dialogs: DialogPageType
+    messages: Array<MessageType>
 }
 
+export type SidebarType = {}
 export type DialogPageType = {
     dialogs: DialogType[]
     messages: MessageType[]
 }
-
 export type RootStateType = {
     profilePage: ProfilePageType
     dialogsPage: DialogPageType
@@ -67,12 +67,13 @@ export type RootStateType = {
     sidebar: {}
 }
 
-export const addPost =(postText:string)=>{
-    const newPost:PostType ={
+export const addPost = ()=>{
+    const newPost: PostType ={
         id:new Date().getTime(),
-        message: postText,
+        message: state.profilePage.newPostText,
         likesCount:0
     }
-    state.profilePage.posts.push(newPost)
+    state.profilePage.posts.push(newPost);
+    state.profilePage.newPostText = "";
     renderTree(state)
 }
