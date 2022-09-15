@@ -1,4 +1,5 @@
 import App from "../App";
+
 let rerenderEntireTree = (state: RootStateType) => {
     console.log("State changed")
 }
@@ -59,12 +60,9 @@ let state: RootStateType = {
             {id: 5, message: 'Yo'}
         ]
     },
-    sidebar: {
-        //...
-    }
+    sidebar: {}
 }
 
-// @ts-ignore
 window.state = state
 
 export const addPost = () => {
