@@ -1,79 +1,90 @@
 import App from "../App";
-
-import {renderTree} from "../renderTree";
-
-export type PostType = {
-    id: number
-    message: string
-    likesCount: number
+let rerenderEntireTree = (state: RootStateType) => {
+    console.log("State changed")
 }
 
-export type DialogType = {
-    id: number
+type MessageType = {
+    id: number,
+    message: string
+}
+type DialogType = {
+    id: number,
     name: string
 }
-
-export type MessageType = {
-    id: number
-    message: string
+type PostType = {
+    id: number,
+    message: string,
+    likesCount: number
 }
-
 export type ProfilePageType = {
     posts: Array<PostType>
-    newPostText?: string
+    newPostText: string
 }
-export type DialogPropsType = {
-    dialogs: DialogPageType
+export type DialogPageType = {
+    dialogs: Array<DialogType>
     messages: Array<MessageType>
 }
-
-export type SidebarType = {}
-export type DialogPageType = {
-    dialogs: DialogType[]
-    messages: MessageType[]
-}
+type SidebarType = {}
 export type RootStateType = {
     profilePage: ProfilePageType
     dialogsPage: DialogPageType
     sidebar: SidebarType
 }
 
- export let state: RootStateType = {
+
+let state: RootStateType = {
     profilePage: {
         posts: [
-            {id: 1, message: "Hi, how are you", likesCount: 22},
-            {id: 2, message: "Hi, Im faen", likesCount: 14},
-            {id: 5, message:'iiiiiii', likesCount: 14}
-        ]
+            {id: 1, message: 'Hi, how are you?', likesCount: 12},
+            {id: 2, message: 'It\'s my first post', likesCount: 11},
+            {id: 3, message: 'Blabla', likesCount: 11},
+            {id: 4, message: 'Dada', likesCount: 11}
+        ],
+        newPostText: "it-kamasutra"
     },
     dialogsPage: {
         dialogs: [
-            {id: 1, name: 'Dima'},
-            {id: 2, name: 'Andrey'},
-            {id: 3, name: 'Olga'},
-            {id: 4, name: 'Ilya'},
-            {id: 5, name: 'Inga'},
-            {id: 6, name: 'Vova'}
+            {id: 1, name: 'Dimych'},
+            {id: 2, name: 'Andrew'},
+            {id: 3, name: 'Sveta'},
+            {id: 4, name: 'Sasha'},
+            {id: 5, name: 'Viktor'},
+            {id: 6, name: 'Valera'}
         ],
         messages: [
             {id: 1, message: 'Hi'},
-            {id: 2, message: 'Yo'},
-            {id: 3, message: 'Hi Bro'},
-            {id: 4, message: 'Im Faen'},
-            {id: 5, message: 'Favoeite'},
-            {id: 6, message: 'Gang'}
+            {id: 2, message: 'How is your it-kamasutra?'},
+            {id: 3, message: 'Yo'},
+            {id: 4, message: 'Yo'},
+            {id: 5, message: 'Yo'}
         ]
     },
-    sidebar: {}
+    sidebar: {
+        //...
+    }
 }
 
-export const addPost = ()=>{
-    const newPost: PostType ={
-        id:new Date().getTime(),
+// @ts-ignore
+window.state = state
+
+export const addPost = () => {
+    let newPost: PostType = {
+        id: new Date().getTime(),
         message: state.profilePage.newPostText,
-        likesCount:0
-    }
+        likesCount: 0
+    };
     state.profilePage.posts.push(newPost);
     state.profilePage.newPostText = "";
-    renderTree(state)
+    rerenderEntireTree(state);
 }
+
+export const updateNewPostText = (newText: string) => {
+    state.profilePage.newPostText = newText;
+    rerenderEntireTree(state);
+}
+
+export const subscribe = (observer: any) => {
+    rerenderEntireTree = observer;
+}
+
+export default state;

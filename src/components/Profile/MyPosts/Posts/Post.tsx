@@ -1,7 +1,11 @@
 import React from 'react';
 import s from './Post.module.css';
-import {message} from "antd";
-import {PostType, ProfilePageType} from "../../../../Redux/State";
+
+type PostType = {
+    id?: number,
+        message: string,
+        likesCount: number
+}
 
 export const Post = (props: PostType) => {
     return (

@@ -1,13 +1,25 @@
 import React, {ChangeEvent, MouseEvent, useState} from 'react';
 import s from './MyPosts.module.css';
-import {PostType, ProfilePageType} from "../../../Redux/State";
 import {Post} from "./Posts/Post";
 
+type DialogType = {
+    id?: number,
+    message: string,
+    likesCount: number
+}
+type addPOstType = {
+    addPost: () => void
+}
+type PostPropsType = {
+    postsData: DialogType[]
+    newPostText: string,
+    addPost: () => void
+    updateNewPostText: (value: string) => void
+}
 
-
-export const MyPosts = (props: any) => {
-    let postsElements = props.postsData.map ((p: any) =>
-        <Post message={p.message} likesCount={p.likesCount} />
+export const MyPosts = (props: PostPropsType) => {
+    let postsElements = props.postsData.map (p =>
+        <Post message={p.message} likesCount={p.likesCount} key={p.id}/>
     );
 
     let newPostElement= React.createRef<HTMLTextAreaElement>();
@@ -19,7 +31,7 @@ export const MyPosts = (props: any) => {
 
     const onPostChange = () => {
         let text = newPostElement.current?.value;
-        props.updateNewPostText(text)
+        props.updateNewPostText(text || "")
     }  // 2
 
     return (
@@ -42,6 +54,4 @@ export const MyPosts = (props: any) => {
             </div>
         </div>
     )
-}
-
 }

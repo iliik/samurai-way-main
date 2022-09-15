@@ -2,17 +2,18 @@ import React, {ChangeEvent, MouseEvent, useState} from 'react';
 import s from './Dialogs.module.css'
 import {DialodItem} from "./DialogItem/DialogItem";
 import {Message} from "./Message/Message";
-import {DialogPageType, DialogPropsType} from "../../Redux/State";
+import {DialogPageType} from "../../Redux/State";
 
-export type DialogsPropsType={
-    state:DialogPageType
+
+type DialogsPropsType = {
+    state: DialogPageType
+    addPost: () => void
 }
 
 export const Dialogs = (props: DialogsPropsType) => {
-
     let dialogElements = props.state.dialogs.map(d =>
-        <DialodItem name={d.name} id={d.id}/>)
-    let messagesElements = props.state.messages.map(m => <Message message={m.message}/>)
+        <DialodItem name={d.name} id={d.id} key={d.id}/>)
+    let messagesElements = props.state.messages.map(m => <Message message={m.message} key={m.id}/>)
 
     const [newMessage, setNewMessage] = useState('')
 

@@ -1,4 +1,4 @@
-import {addPost, DialogPropsType, PostType, ProfilePageType, RootStateType} from "./Redux/State";
+import {addPost, ProfilePageType, updateNewPostText} from "./Redux/State";
 import ReactDOM from "react-dom";
 import {BrowserRouter} from "react-router-dom";
 import App from "./App";
@@ -12,8 +12,7 @@ export const renderTree = (state: ProfilePageType) => {
             <App state={state}
                  addPost={addPost}
                  updateNewPostText={updateNewPostText}
-
-            }/>
+            />
         </BrowserRouter>,
         document.getElementById('root'));
 }
