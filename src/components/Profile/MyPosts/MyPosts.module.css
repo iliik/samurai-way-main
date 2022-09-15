@@ -5,3 +5,15 @@
     margin-top: 10px;
 
 }
+.button{
+    border-radius: 30px;
+    background-color:#20B2AA;
+    border: none;
+    color: white;
+    padding: 7px 7px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    content: "";
+}

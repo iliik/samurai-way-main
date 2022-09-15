@@ -32,7 +32,7 @@ export const MyPosts = (props: PostPropsType) => {
     const onPostChange = () => {
         let text = newPostElement.current?.value;
         props.updateNewPostText(text || "")
-    }  // 2
+    }
 
     return (
         <div className={s.postsBlock}>
@@ -41,12 +41,12 @@ export const MyPosts = (props: PostPropsType) => {
                 <div>
                     <textarea
                         onChange={onPostChange}
-                        ref={newPostElement}   // 1
-                        value={props.newPostText} // 3
+                        ref={newPostElement}
+                        value={props.newPostText}
                     />
                 </div>
                 <div>
-                    <button onClick={ addPost }>Add post</button>
+                    <button className={s.button} onClick={ addPost }>Add post</button>
                 </div>
             </div>
             <div className={s.posts}>
