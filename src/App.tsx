@@ -3,9 +3,9 @@ import './App.css';
 import {Navbar} from "./components/Navbar/Navbar";
 import {Header} from "./components/Header/Header";
 import {Profile} from "./components/Profile/Profile";
-import {Dialogs} from "./components/Dialogs/Dialogs";
 import {Route} from "react-router-dom";
-import {addPost, RootStateType} from "./Redux/State";
+import { PropsTypeForAPP, RootStateType} from "./Redux/store";
+import DialogsContainer from "./components/Dialogs/DialogsContainer";
 
 
 export type PropsType={
@@ -14,30 +14,24 @@ export type PropsType={
     updateNewPostText: (value: string) => void
 }
 
-const App = (props: PropsType) => {
-
+const App: React.FC<PropsTypeForAPP> = () => {
+    // debugger
     return (
-        <div className="app-wrapper">
-            <Header/>
-            <Navbar/>
+        <div className='app-wrapper'>
+            <Header />
+            <Navbar />
 
             <div className='app-wrapper-content'>
                 <Route path='/dialogs'
-                       render={() => <Dialogs
-                            state={props.state.dialogsPage}
-                            addPost={addPost}
-                       />}/>
+                       render={() =>  <DialogsContainer />
+                       }/>
 
                 <Route path='/profile'
-                       render={() => <Profile
-                           profilePage={props.state.profilePage}
-                           addPost={props.addPost}
-                           updateNewPostText={props.updateNewPostText}
-                           newPostText={props.state.profilePage.newPostText}
-                       />}/>
+                       render={ ()  => <Profile />
+                       }/>
             </div>
-        </div>
-    );
+
+        </div>)
 }
 
 export default App;

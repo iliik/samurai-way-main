@@ -1,43 +1,63 @@
-import React, {ChangeEvent, MouseEvent, useState} from 'react';
+import React, {ChangeEvent} from 'react';
+// @ts-ignore
 import s from './Dialogs.module.css'
-import {DialodItem} from "./DialogItem/DialogItem";
 import {Message} from "./Message/Message";
-import {DialogPageType} from "../../Redux/State";
+import {DialogItem} from "./DialogItem/DialogItem";
 
 
+type DialogType = {
+    id: number,
+    name: string
+}
+type MessageType = {
+    id: number,
+    message: string
+}
+export type DialogPageType = {
+    dialogs: Array<DialogType>
+    messages: Array<MessageType>
+    newMessageBody: string
+}
 type DialogsPropsType = {
-    state: DialogPageType
-    addPost: () => void
+    dialogsPage: DialogPageType
+    updateNewMessageBody: (body: string) => void
+    sendMessage: () => void
 }
 
-export const Dialogs = (props: DialogsPropsType) => {
-    let dialogElements = props.state.dialogs.map(d =>
-        <DialodItem name={d.name} id={d.id} key={d.id}/>)
-    let messagesElements = props.state.messages.map(m => <Message message={m.message} key={m.id}/>)
+const Dialogs = (props: DialogsPropsType) => {
+    // debugger
+    const dialogElement = props.dialogsPage.dialogs.map (d => <DialogItem name = {d.name} id = {d.id} key={d.id}/> );
+    // @ts-ignore
+    const messagesElements = props.dialogsPage.messages.map (m => <Message message={m.message} key={m.id} id={m.id}/> );
 
-    const [newMessage, setNewMessage] = useState('')
+    const stateOrigin = props.dialogsPage;
+    //let stateOrigin = props.store.getState().dialogsPage
 
-    const onChangeHandler = (e:ChangeEvent<HTMLTextAreaElement>) =>{
-        setNewMessage(e.currentTarget.value)
+    const newMessageBody = stateOrigin.newMessageBody;
+
+    const onSendMessageClick = () => { props.sendMessage(); }
+
+    const onNewMessageChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
+        let body = event.target.value;
+        props.updateNewMessageBody(body)
+        // props.store.dispatch(updateNewMessageBodyCreator(body));
     }
-    const onClickHandler = (e:MouseEvent<HTMLButtonElement>) => {
-        alert(newMessage)
-    }
-
-
     return (
         <div className={s.dialogs}>
-            <div className={s.dialogsItems}>
-
-                {dialogElements}
-            </div>
-            <div className={s.messages}>
-                {messagesElements}
+            <div className={s.dialogsItems}> {dialogElement} </div>
+            <div> {messagesElements} </div>
+            <div>
                 <div>
-                    <textarea onChange={onChangeHandler}></textarea>
-                    <button onClick={onClickHandler}>add</button>
+                    <textarea value={newMessageBody} onChange={onNewMessageChange}
+                              placeholder='Enter your message'>
+                    </textarea>
                 </div>
+
+                <div> <button onClick={onSendMessageClick}>Send</button> </div>
+
             </div>
         </div>
     )
 }
+
+export default Dialogs;
