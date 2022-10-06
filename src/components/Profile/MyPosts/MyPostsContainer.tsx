@@ -1,6 +1,6 @@
 import React from 'react';
 import {addPostActionCreator, onPostActionChange} from "../../../Redux/profile-reducer";
-import {connect} from "react-redux";
+import {connect, ConnectedProps} from "react-redux";
 import MyPosts from "./MyPosts";
 import {RootStateType} from "../../../Redux/store";
 
@@ -18,13 +18,17 @@ let mapDispatchToProps = (dispatch: any) => {
             let action = onPostActionChange(text);
             dispatch(action);
         },
-        addPost: (postText: string) => {
-            dispatch(addPostActionCreator(postText));
+        addPost: () => {
+            dispatch(addPostActionCreator());
         }
     }
 }
 
+let connector = connect(mapStateToProps, mapDispatchToProps)
+
+export type ConnectPropsType = ConnectedProps<typeof connector>
+
 // Вызвали функцию connect, она вернула нам двойную функцию, и мы вызываем потом ту функцию, который вернул нам предыдущий вызов. Первый вызов настраивает нашу контейнерную компоненту
-const MyPostsContainer = connect(mapStateToProps, mapDispatchToProps)(MyPosts)
+const MyPostsContainer = connector(MyPosts)
 
 export default MyPostsContainer;

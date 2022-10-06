@@ -2,18 +2,12 @@ import React from 'react';
 import s from './MyPosts.module.css'
 import {PostType} from "../../../Redux/store";
 import {Post} from "./Posts/Post";
+import {ConnectPropsType} from "./MyPostsContainer";
 
-
-
-type PostPropsType = {
-    postsData: Array<PostType>
-    newPostText: string
-    updateNewPostText: (text: string) => void
-    addPost: () => void
-}
+interface PostPropsType extends ConnectPropsType{}
 
 const MyPosts = (props: PostPropsType) => {
-    const postsElements = props.postsData.map(p =>
+    const postsElements = props.posts.map(p =>
         <Post message={p.message} likesCount={p.likesCount} key={p.id}/>
     );
 
@@ -24,7 +18,7 @@ const MyPosts = (props: PostPropsType) => {
     }
 
     const onPostChange = () => {
-            let text = newPostElement.current.value;
+            let text = newPostElement.current!.value;
             props.updateNewPostText(text);
         }
 

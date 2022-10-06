@@ -64,12 +64,10 @@ export type PropsTypeForAPP = {
     dispatch?: (action: ActionsTypes) => void
 }
 
-
 export type ActionsTypes = onPostActionChangeType | addPostActionCreatorType |
     sendMessageCreatorType | updateNewMessageBodyCreatorType
 
-
- let store: StoreType = {
+let store: StoreType = {
     _state: {
         profilePage: {
             posts: [
@@ -98,14 +96,13 @@ export type ActionsTypes = onPostActionChangeType | addPostActionCreatorType |
             ],
             newMessageBody: ""
         },
-        sidebar: {
-        }
+        sidebar: {}
     },
     _onChange() {
         console.log('Hello')
     },
-    subscribe(callback) {
-        this._onChange = callback;
+    subscribe(observer) {
+        this._onChange = observer;
     },
     getState() {
         return this._state
