@@ -1,7 +1,7 @@
 import {ActionsTypes, PostType, ProfilePageType} from "./store";
 
 export type addPostActionCreatorType = {
-    type:'ADD-POST'
+    type: 'ADD-POST'
     postText: string
 }
 export type onPostActionChangeType = {
@@ -11,16 +11,6 @@ export type onPostActionChangeType = {
 
 const ADD_POST = 'ADD-POST';
 const UPDATE_NEW_POST_TEXT = "UPDATE-NEW-POST-TEXT";
-
-export const addPostActionCreator = (postText: string) => ({
-        type: ADD_POST,
-        postText } as const
-)
-
-export const onPostActionChange = (text: string) => ({
-        type: UPDATE_NEW_POST_TEXT,
-        newText: text ? text : "" } as const
-)
 
 let initialState = {
     posts: [
@@ -34,25 +24,40 @@ let initialState = {
 
 const profileReducer = (state: ProfilePageType = initialState, action: ActionsTypes) => {
     switch (action.type) {
-        case ADD_POST:
+        case ADD_POST: {
             let newPost: PostType = {
                 id: new Date().getTime(),
                 message: state.newPostText,
                 likesCount: 0
             };
-            state.posts.push(newPost);
-            state.newPostText = '';
-            return state
-        case UPDATE_NEW_POST_TEXT:
-            state.newPostText = action.newText;
-            return state
+           return {
+                ...state,
+                posts : [...state.posts, newPost],
+                newPostText:''
+            }
+        }
+        case UPDATE_NEW_POST_TEXT: {
+          return {
+                ...state,
+                newPostText : action.newText
+            }
+        }
         default:
             return state;
     }
-
-    return state;
 }
 
+export const addPostActionCreator = (postText: string) => ({
+        type: ADD_POST,
+        postText
+    } as const
+)
+
+export const onPostActionChange = (text: string) => ({
+        type: UPDATE_NEW_POST_TEXT,
+        newText: text ? text : ""
+    } as const
+)
 
 
 export default profileReducer

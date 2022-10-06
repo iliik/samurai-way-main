@@ -1,6 +1,5 @@
 import React from 'react';
-// @ts-ignore
-import s from './MyPosts.module.css';
+import s from './MyPosts.module.css'
 import {PostType} from "../../../Redux/store";
 import {Post} from "./Posts/Post";
 
@@ -20,11 +19,11 @@ const MyPosts = (props: PostPropsType) => {
 
     const newPostElement = React.createRef<HTMLTextAreaElement>();
 
-    const onAddPost = (props: any) => {
+    const onAddPost = () => {
         props.addPost();
     }
 
-    const onPostChange = (props: any) => {
+    const onPostChange = () => {
             let text = newPostElement.current.value;
             props.updateNewPostText(text);
         }

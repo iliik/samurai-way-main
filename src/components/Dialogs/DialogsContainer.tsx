@@ -1,27 +1,28 @@
-import {sendMessageCreator} from "../../Redux/dialogs-reducer";
+import {sendMessageCreator, updateNewMessageBodyCreator} from "../../Redux/dialogs-reducer";
 import {connect} from "react-redux";
 import Dialogs from "./Dialogs";
+import {RootStateType} from "../../Redux/store";
 
 
-let mapStateToProps = (state: any) => {
+let mapStateToProps = (state: RootStateType) => {
     return {
         dialogsPage: state.dialogsPage
     }
 }
 
-let mapDispathcToProps = (dispatch: any) => {
+let mapDispatchToProps = (dispatch: any) => {
     return {
-        updateNewMessageBody: () => {
+        sendMessage: () => {
             dispatch(sendMessageCreator())
         },
-        sendMessage: (body: any) => {
-            dispatch(sendMessageCreator(body));
+        updateNewMessageBody : (body: string) => {
+            dispatch(updateNewMessageBodyCreator(body));
         }
     }
 }
 
 
 // Вызвали функцию connect, она вернула нам двойную функцию, и мы вызываем потом ту функцию, который вернул нам предыдущий вызов. Первый вызов настраивает нашу контейнерную компоненту
-const DialogsContainer = connect(mapStateToProps,mapDispathcToProps)(Dialogs)
+const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(Dialogs)
 
 export default DialogsContainer;

@@ -26,21 +26,21 @@ type DialogsPropsType = {
 
 const Dialogs = (props: DialogsPropsType) => {
     // debugger
-    const dialogElement = props.dialogsPage.dialogs.map (d => <DialogItem name = {d.name} id = {d.id} key={d.id}/> );
-    // @ts-ignore
-    const messagesElements = props.dialogsPage.messages.map (m => <Message message={m.message} key={m.id} id={m.id}/> );
+    const dialogElement = props.dialogsPage.dialogs.map(d => <DialogItem name={d.name} id={d.id} key={d.id}/>);
+    const messagesElements = props.dialogsPage.messages.map(m => <Message message={m.message} key={m.id}/>);
 
     const stateOrigin = props.dialogsPage;
     //let stateOrigin = props.store.getState().dialogsPage
 
     const newMessageBody = stateOrigin.newMessageBody;
 
-    const onSendMessageClick = () => { props.sendMessage(); }
+    const onSendMessageClick = () => {
+        props.sendMessage();
+    }
 
     const onNewMessageChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
         let body = event.target.value;
         props.updateNewMessageBody(body)
-        // props.store.dispatch(updateNewMessageBodyCreator(body));
     }
     return (
         <div className={s.dialogs}>
@@ -53,7 +53,9 @@ const Dialogs = (props: DialogsPropsType) => {
                     </textarea>
                 </div>
 
-                <div> <button onClick={onSendMessageClick}>Send</button> </div>
+                <div>
+                    <button onClick={onSendMessageClick}>Send</button>
+                </div>
 
             </div>
         </div>
