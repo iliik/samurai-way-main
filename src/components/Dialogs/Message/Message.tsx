@@ -1,5 +1,4 @@
 import React from 'react';
-// @ts-ignore
 import s from './../Dialogs.module.css'
 
 type MessageType = {
@@ -9,7 +8,10 @@ type MessageType = {
 
 export const Message = (props: MessageType) => {
     return (
-            <div className={s.dialog}> {props.message} </div>
+            <div className={s.dialog}>
+                {props.message}
+            </div>
+
     )
 }
 

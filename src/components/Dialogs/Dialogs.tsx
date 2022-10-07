@@ -25,12 +25,12 @@ type DialogsPropsType = {
 }
 
 const Dialogs = (props: DialogsPropsType) => {
-    // debugger
+
     const dialogElement = props.dialogsPage.dialogs.map(d => <DialogItem name={d.name} id={d.id} key={d.id}/>);
     const messagesElements = props.dialogsPage.messages.map(m => <Message message={m.message} key={m.id}/>);
 
     const stateOrigin = props.dialogsPage;
-    //let stateOrigin = props.store.getState().dialogsPage
+
 
     const newMessageBody = stateOrigin.newMessageBody;
 
