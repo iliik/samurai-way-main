@@ -1,12 +1,14 @@
 import React from "react"
 import s from './Users.module.css'
-import {initialStatePropsType, UsersPropsType} from "../../Redux/users-reducer";
+import {initialStatePropsType, locationType, UsersPropsType} from "../../Redux/users-reducer";
 
 export type UserType = {
     usersPage: UsersPropsType
     follow: (userId: number) => void
     unfollow: (userId: number) => void
     setUsers: (users:initialStatePropsType[])=>void
+    users: initialStatePropsType[]
+
 }
 
 
