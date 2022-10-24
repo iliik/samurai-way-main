@@ -13,6 +13,7 @@ export type initialStatePropsType = {
     status: string,
     photoUrl: string
     location: locationType
+    photos:string
 }
 export type UsersPropsType = {
     users: initialStatePropsType []
