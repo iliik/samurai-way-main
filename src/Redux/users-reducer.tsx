@@ -19,12 +19,13 @@ export type initialStatePropsType = {
 }
 export type UsersPropsType = {
     users: initialStatePropsType []
-    usersPage :UsersPageType
 }
 
 let initialState = {
     users: [],
-
+    pageSize: 5,
+    totalUsersCount: 0,
+    currentPage: 1
 }
 type UsersPageType ={
     pageSize: 5,
