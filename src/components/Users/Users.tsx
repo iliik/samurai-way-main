@@ -1,7 +1,7 @@
 import React from "react"
 import s from './Users.module.css'
-import usersPhoto
-    from '../../assest/images/png-transparent-avatar-user-computer-icons-software-developer-avatar-child-face-heroes.png'
+// @ts-ignore
+import usersPhoto from '../../assest/images/User.png'
 import axios from "axios";
 import {initialStatePropsType, UsersPropsType} from "../../Redux/users-reducer";
 
@@ -17,15 +17,13 @@ export type UserType = {
 
 
 class Users extends React.Component<UserType> {
-
-    constructor(props) {
-        super(props);
+        componentDidMount() {
             axios.get(`https://social-network.samuraijs.com/api/1.0/users`).then(response => {
                 this.props.setUsers(response.data.items)
             })
         }
 
-        render() {
+    render() {
             return <div>
                 {
                     this.props.users.map(u => <div key={u.id}>
