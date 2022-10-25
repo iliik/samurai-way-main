@@ -1,6 +1,8 @@
 const FOLLOW = 'FOLLOW';
 const UNFOLLOW = "UNFOLLOW";
 const SET_USERS = "SET_USERS";
+const SET_CURRENT_PAGE = "SET_CURRENT_PAGE";
+const SET_USERS_TOTAL_COUNT = "SET_USERS_TOTAL_COUNT";
 
 export type locationType = {
     city: string,
@@ -13,14 +15,21 @@ export type initialStatePropsType = {
     status: string,
     photoUrl: string
     location: locationType
-    photos:string
+    photos: string
 }
 export type UsersPropsType = {
     users: initialStatePropsType []
+    usersPage :UsersPageType
 }
 
 let initialState = {
-    users: []
+    users: [],
+
+}
+type UsersPageType ={
+    pageSize: 5,
+    totalUsersCount: 0,
+    currentPage: 1
 }
 
 const usersReducer = (state: UsersPropsType = initialState, action: any) => {
@@ -35,7 +44,6 @@ const usersReducer = (state: UsersPropsType = initialState, action: any) => {
                     return u
                 })
             }
-
         case UNFOLLOW:
             return {
                 ...state,
@@ -47,9 +55,14 @@ const usersReducer = (state: UsersPropsType = initialState, action: any) => {
                 })
             }
         case SET_USERS : {
-            return {...state, users: [...state.users, ...action.users]}
+            return {...state, users: action.users}
         }
-
+        case SET_CURRENT_PAGE : {
+            return {...state, currentPage: action.currentPage}
+        }
+        case SET_USERS_TOTAL_COUNT : {
+            return {...state, totalUsersCount: action.count}
+        }
         default :
             return state
     }
@@ -57,6 +70,9 @@ const usersReducer = (state: UsersPropsType = initialState, action: any) => {
 
 export const followAC = (userId: number) => ({type: FOLLOW, userId})
 export const unfollowAC = (userId: number) => ({type: UNFOLLOW, userId})
-export const setUsersAC = (users:initialStatePropsType[]) => ({type: SET_USERS, users})
+export const setUsersAC = (users: initialStatePropsType[]) => ({type: SET_USERS, users})
+export const setCurrentPageAC = (currentPage: initialStatePropsType[]) => ({type: SET_CURRENT_PAGE, currentPage})
+export const setUsersTotalCountAC = (totalUsersCount: initialStatePropsType[]) => ({type: SET_USERS_TOTAL_COUNT, count:totalUsersCount })
 
 export default usersReducer
+
