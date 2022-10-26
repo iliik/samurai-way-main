@@ -1,4 +1,4 @@
-import {ActionsTypes} from "./store";
+//import {ActionsTypes} from "./store";
 import {DialogPageType} from "../components/Dialogs/Dialogs";
 
 const UPDATE_NEW_MESSAGE_BODY = "UPDATE-NEW-MESSAGE-BODY";
@@ -11,6 +11,8 @@ export type updateNewMessageBodyCreatorType = {
     type: "UPDATE-NEW-MESSAGE-BODY"
     body: string
 }
+
+type ActionsTypes = sendMessageCreatorType | updateNewMessageBodyCreatorType
 
 let initialState = {
     dialogs: [

@@ -1,9 +1,20 @@
 import React from "react"
 import s from "./Users.module.css";
 import usersPhoto from "../../assest/images/User.png";
+import {initialStatePropsType} from "../../Redux/users-reducer";
 
+type TypeUser = {
+    users: initialStatePropsType[];
+    follow: (userId: number) => void
+    unfollow: (userId: number) => void
+    currentPage: number
+    pageSize: number
+    totalUsersCount: number
+    onPageChanged: (pageNumber: number) => void
 
-let Users = (props: any) => {
+}
+
+let Users = (props: TypeUser) => {
 
     let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize)
     let pages = []
