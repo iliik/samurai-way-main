@@ -1,11 +1,9 @@
 import React from "react"
 import s from "./Users.module.css";
-// @ts-ignore
 import usersPhoto from "../../assest/images/User.png";
 
 
-
-let Users = (props) => {
+let Users = (props: any) => {
 
     let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize)
     let pages = []
