@@ -1,6 +1,6 @@
 import dialogReducer, {sendMessageCreatorType, updateNewMessageBodyCreatorType} from "./dialogs-reducer";
 import sidebarReducer from "./sidebar-reducer";
-import profileReducer, {addPostActionCreatorType, onPostActionChangeType} from "./profile-reducer";
+import profileReducer, {addPostActionCreatorType, onPostActionChangeType, setUserProfileType} from "./profile-reducer";
 
 
 type DialogType = {
@@ -30,7 +30,8 @@ export type PostType = {
 }
 export type ProfilePageType = {
     posts: Array<PostType>
-    newPostText: string
+    newPostText: string,
+    profile: null
 }
 export type PostPropsType = {
     postsData: PostType[],
@@ -65,7 +66,7 @@ export type PropsTypeForAPP = {
 }
 
 export type ActionsTypes = onPostActionChangeType | addPostActionCreatorType |
-    sendMessageCreatorType | updateNewMessageBodyCreatorType
+    setUserProfileType | sendMessageCreatorType | updateNewMessageBodyCreatorType
 
 let store: StoreType = {
     _state: {
@@ -76,7 +77,8 @@ let store: StoreType = {
                 {id: 3, message: 'Blabla', likesCount: 11},
                 {id: 4, message: 'Dada', likesCount: 11}
             ],
-            newPostText: "it-kamasutra"
+            newPostText: "it-kamasutra",
+            profile: null
         },
         dialogsPage: {
             dialogs: [
