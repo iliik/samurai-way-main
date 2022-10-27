@@ -1,8 +1,13 @@
 import React from "react";
 import s from './ProfileInfo.module.css'
+import Preloader from "../../common/Preloader/Preloader";
 
 
-export const ProfileInfo = () => {
+export const ProfileInfo = (props:any) => {
+
+    if(!props.profile){
+        return <Preloader/>
+    }
     return (
         <div>
             <div>
@@ -10,7 +15,8 @@ export const ProfileInfo = () => {
                     src="https://images.pexels.com/photos/531880/pexels-photo-531880.jpeg?cs=srgb&dl=pexels-pixabay-531880.jpg&fm=jpg"/>
             </div>
             <div className={s.discripshenBloc}>
-                Ava +discripshen
+                <img src={props.profile.photos.large}/>
+                Ava + discripshen
             </div>
         </div>
     )

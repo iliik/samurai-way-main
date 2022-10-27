@@ -1,14 +1,11 @@
 import React from "react";
-import Preloader from "../../../assest/images/Preloader.gif"
+import Preloader from '../../../assest/images/Preloader.gif'
 
-// type PreloaderType={
-//     Preloader:string
-// }
-const Preloader = (props:any) => {
+const PreloaderImg = (props:any) => {
     return(
         <div style={ { backgroundColor: "white" } }>
-            {/*<img src={Preloader}/>*/}
+            <img src={Preloader}/>
         </div>
     )
 }
-export default Preloader
+export default PreloaderImg

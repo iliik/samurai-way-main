@@ -2,6 +2,7 @@ import React from "react"
 import s from "./Users.module.css";
 import usersPhoto from "../../assest/images/User.png";
 import {initialStatePropsType} from "../../Redux/users-reducer";
+import {NavLink} from "react-router-dom";
 
 type TypeUser = {
     users: initialStatePropsType[];
@@ -11,7 +12,6 @@ type TypeUser = {
     pageSize: number
     totalUsersCount: number
     onPageChanged: (pageNumber: number) => void
-
 }
 
 let Users = (props: TypeUser) => {
@@ -35,8 +35,11 @@ let Users = (props: TypeUser) => {
             props.users.map(u => <div key={u.id}>
             <span>
                 <div>
-                    <img src={u.photos.small != null ? u.photos.small : usersPhoto}
-                         className={s.usersPhoto}/>
+                    <NavLink to={'/profile/' + u.id}>
+                      <img src={u.photos.small != null ? u.photos.small : usersPhoto}
+                           className={s.usersPhoto}/>
+                    </NavLink>
+
                 </div>
                 <div>
                     {u.followed
