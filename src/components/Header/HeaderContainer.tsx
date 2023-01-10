@@ -31,7 +31,7 @@ export class HeaderContainer extends React.Component <HeaderContainerType> {
     }
 
     return() {
-        return <Header />
+        return <Header login={null} isAuth={ false} />
     }
 }
 

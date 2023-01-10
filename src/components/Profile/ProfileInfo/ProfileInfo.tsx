@@ -3,8 +3,6 @@ import s from './ProfileInfo.module.css'
 import PreloaderImg from "../../common/Preloader/Preloader";
 
 
-
-
 export const ProfileInfo = (props:any) => {
 
     if(!props.profile){
