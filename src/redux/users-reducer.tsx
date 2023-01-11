@@ -30,13 +30,23 @@ export type toggleisFetchingCreatorType = {
     isFetching: boolean
 }
 
-type ActionsTypes = followCreatorType | unfollowCreatorType | setUserCreatorType | setCurrentPageCreatorType | setUsersTotalCreatorType | toggleisFetchingCreatorType
+type ActionsTypes =
+    followCreatorType
+    | unfollowCreatorType
+    | setUserCreatorType
+    | setCurrentPageCreatorType
+    | setUsersTotalCreatorType
+    | toggleisFetchingCreatorType
 
 export type locationType = {
     city: string,
     country: string
 }
 export type initialStatePropsType = {
+    auth: {
+        isAuth: false,
+        login: null
+    };
     id: number,
     followed: boolean,
     fullName: string,
@@ -85,7 +95,8 @@ const usersReducer = (state = initialState, action: ActionsTypes) => {
         }
         case SET_USERS_TOTAL_COUNT : {
             return {...state, totalUsersCount: action.totalUsersCount}
-        } case TOGGLE_IS_FETCHING : {
+        }
+        case TOGGLE_IS_FETCHING : {
             return {...state, isFetching: action.isFetching}
         }
         default :
@@ -97,8 +108,8 @@ export const follow = (userId: number) => ({type: FOLLOW, userId} as const)
 export const unfollow = (userId: number) => ({type: UNFOLLOW, userId} as const)
 export const setUsers = (users: initialStatePropsType[]) => ({type: SET_USERS, users} as const)
 export const setCurrentPage = (currentPage: number) => ({type: SET_CURRENT_PAGE, currentPage} as const)
-export const setUsersTotalCount = (totalUsersCount: number) => ({type: SET_USERS_TOTAL_COUNT, totalUsersCount } as const)
-export const toggleIsFetching = (isFetching: boolean) => ({type: TOGGLE_IS_FETCHING, isFetching } as const)
+export const setUsersTotalCount = (totalUsersCount: number) => ({type: SET_USERS_TOTAL_COUNT, totalUsersCount} as const)
+export const toggleIsFetching = (isFetching: boolean) => ({type: TOGGLE_IS_FETCHING, isFetching} as const)
 
 export default usersReducer
 

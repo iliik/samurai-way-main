@@ -1,8 +1,8 @@
 import React from 'react';
-import {addPostActionCreator, onPostActionChange} from "../../../Redux/profile-reducer";
+import {addPostActionCreator, onPostActionChange} from "../../../redux/profile-reducer";
 import {connect, ConnectedProps} from "react-redux";
 import MyPosts from "./MyPosts";
-import {RootStateType} from "../../../Redux/store";
+import {RootStateType} from "../../../redux/store";
 
 
 let mapStateToProps = (state: RootStateType) => {

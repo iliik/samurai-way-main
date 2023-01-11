@@ -8,8 +8,8 @@ import {
     setUsersTotalCount,
     toggleIsFetching,
     unfollow
-} from "../../Redux/users-reducer";
-import {AppStateType} from "../../Redux/redux-store";
+} from "../../redux/users-reducer";
+import {AppStateType} from "../../redux/redux-store";
 import axios from "axios";
 import Users from "./Users";
 import Preloader from "../common/Preloader/Preloader";

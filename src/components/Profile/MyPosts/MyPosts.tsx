@@ -1,6 +1,6 @@
 import React from 'react';
 import s from './MyPosts.module.css'
-import {PostType} from "../../../Redux/store";
+import {PostType} from "../../../redux/store";
 import {Post} from "./Posts/Post";
 import {ConnectPropsType} from "./MyPostsContainer";
 

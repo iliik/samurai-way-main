@@ -11,8 +11,17 @@ import {Header} from "./components/Header/Header";
 const App: React.FC = () => {
     return (
         <div className='app-wrapper'>
-            <Header isAuth={true} login={null}/>
+            <Header isAuth={false} login={null}/>
             <Navbar/>
+            {/*<HeaderContainer*/}
+            {/*login={null}*/}
+            {/*isAuth={false}*/}
+            {/*toggleIsFetching={toggleIsFetching}*/}
+            {/*setUsersTotalCount={setUsersTotalCount}*/}
+            {/*userId={null}*/}
+            {/*setAuthUserData={setAuthUserData}*/}
+            {/*email={null}*/}
+            {/*setUsers={setUsers} />*/}
             <div className='app-wrapper-content'>
                 <Route path='/dialogs'
                        render={() => <DialogsContainer/>}/>
