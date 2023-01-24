@@ -4,6 +4,7 @@ const SET_USERS = "SET_USERS";
 const SET_CURRENT_PAGE = "SET_CURRENT_PAGE";
 const SET_USERS_TOTAL_COUNT = "SET_USERS_TOTAL_COUNT";
 const TOGGLE_IS_FETCHING = "TOGGLE_IS_FETCHING";
+const TOGGLE_IS_FOLLOWING_PROGRESS = "TOGGLE_IS_FOLLOWING_PROGRESS";
 
 export type followCreatorType = {
     type: "FOLLOW"
@@ -29,6 +30,10 @@ export type toggleisFetchingCreatorType = {
     type: "TOGGLE_IS_FETCHING"
     isFetching: boolean
 }
+export type toggleFollowingProgressType = {
+    type: "TOGGLE_IS_FETCHING"
+    isFetching: boolean
+}
 
 type ActionsTypes =
     followCreatorType
@@ -37,6 +42,7 @@ type ActionsTypes =
     | setCurrentPageCreatorType
     | setUsersTotalCreatorType
     | toggleisFetchingCreatorType
+    | toggleFollowingProgressType
 
 export type locationType = {
     city: string,
@@ -53,7 +59,8 @@ export type initialStatePropsType = {
     status: string,
     photoUrl: string
     location: locationType
-    photos: string
+    photos: string,
+    toggleFollowingProgress:(isFetching: boolean)=>void
 }
 
 let initialState = {
@@ -61,7 +68,8 @@ let initialState = {
     pageSize: 5,
     totalUsersCount: 0,
     currentPage: 1,
-    isFetching: false
+    isFetching: false,
+    followingInProgress: false,
 }
 
 
@@ -110,6 +118,7 @@ export const setUsers = (users: initialStatePropsType[]) => ({type: SET_USERS, u
 export const setCurrentPage = (currentPage: number) => ({type: SET_CURRENT_PAGE, currentPage} as const)
 export const setUsersTotalCount = (totalUsersCount: number) => ({type: SET_USERS_TOTAL_COUNT, totalUsersCount} as const)
 export const toggleIsFetching = (isFetching: boolean) => ({type: TOGGLE_IS_FETCHING, isFetching} as const)
+export const toggleFollowingProgress = (isFetching: boolean) => ({type: TOGGLE_IS_FOLLOWING_PROGRESS, isFetching} as const)
 
 export default usersReducer
 
