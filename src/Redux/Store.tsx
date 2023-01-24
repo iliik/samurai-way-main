@@ -3,6 +3,7 @@ import sidebarReducer from "./sidebar-reducer";
 import profileReducer, {addPostActionCreatorType, onPostActionChangeType, setUserProfileType} from "./profile-reducer";
 
 
+
 type DialogType = {
     id: number,
     name: string
@@ -114,9 +115,7 @@ let store: StoreType = {
         this._state.profilePage = profileReducer(this._state.profilePage, action)
         this._state.dialogsPage = dialogReducer(this._state.dialogsPage, action)
         this._state.sidebar = sidebarReducer(this._state.sidebar, action)
-
         this._onChange();
-
     }
 }
 

@@ -28,7 +28,7 @@ type UsersContainerTyProps = MapDispatchPropsType & MapStatePropsType
 class UsersContainer extends React.Component<UsersContainerTyProps> {
     componentDidMount() {
         this.props.toggleIsFetching(true)
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize} `).then(response => {
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize} `,{withCredentials: true}).then(response => {
             this.props.toggleIsFetching(false)
             this.props.setUsers(response.data.items)
             this.props.setUsersTotalCount(response.data.totalCount)
@@ -38,7 +38,7 @@ class UsersContainer extends React.Component<UsersContainerTyProps> {
     onPageChanged = (pageNumber: number) => {
         this.props.setCurrentPage(pageNumber)
         this.props.toggleIsFetching(true)
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pageSize} `).then(response => {
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pageSize} `,{withCredentials: true}).then(response => {
             this.props.setUsers(response.data.items)
             this.props.toggleIsFetching(false)
         })
