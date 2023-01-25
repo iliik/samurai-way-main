@@ -49,6 +49,11 @@ export type RootStateType = {
     profilePage: ProfilePageType
     dialogsPage: DialogPageType
     sidebar: SidebarType
+    isAuth:boolean
+    auth: {
+        isAuth:boolean
+    }
+
 }
 
 // OOP with dispatch
@@ -99,7 +104,8 @@ let store: StoreType = {
             ],
             newMessageBody: ""
         },
-        sidebar: {}
+        sidebar: {},
+
     },
     _onChange() {
         console.log('Hello')
