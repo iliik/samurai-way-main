@@ -31,8 +31,9 @@ export type toggleisFetchingCreatorType = {
     isFetching: boolean
 }
 export type toggleFollowingProgressType = {
-    type: "TOGGLE_IS_FETCHING"
+    type: "TOGGLE_IS_FOLLOWING_PROGRESS"
     isFetching: boolean
+    userId:string
 }
 
 type ActionsTypes =
@@ -60,7 +61,7 @@ export type initialStatePropsType = {
     photoUrl: string
     location: locationType
     photos: string,
-    toggleFollowingProgress:(isFetching: boolean)=>void
+    toggleFollowingProgress:(isFetching: boolean,userId: number)=>void
 }
 
 let initialState = {
@@ -69,7 +70,7 @@ let initialState = {
     totalUsersCount: 0,
     currentPage: 1,
     isFetching: false,
-    followingInProgress: false,
+    followingInProgress: [],
 }
 
 
@@ -107,6 +108,14 @@ const usersReducer = (state = initialState, action: ActionsTypes) => {
         case TOGGLE_IS_FETCHING : {
             return {...state, isFetching: action.isFetching}
         }
+        case TOGGLE_IS_FOLLOWING_PROGRESS :{
+            return {
+                ...state,
+                followingInProgress: action.isFetching
+                    ? [...state.followingInProgress, action.userId]
+                    : state.followingInProgress.filter(id =>id != action.userId)
+            }
+        }
         default :
             return state
     }
@@ -118,7 +127,7 @@ export const setUsers = (users: initialStatePropsType[]) => ({type: SET_USERS, u
 export const setCurrentPage = (currentPage: number) => ({type: SET_CURRENT_PAGE, currentPage} as const)
 export const setUsersTotalCount = (totalUsersCount: number) => ({type: SET_USERS_TOTAL_COUNT, totalUsersCount} as const)
 export const toggleIsFetching = (isFetching: boolean) => ({type: TOGGLE_IS_FETCHING, isFetching} as const)
-export const toggleFollowingProgress = (isFetching: boolean) => ({type: TOGGLE_IS_FOLLOWING_PROGRESS, isFetching} as const)
+export const toggleFollowingProgress = (isFetching: boolean, userId:number) => ({type: TOGGLE_IS_FOLLOWING_PROGRESS, isFetching, userId} as const)
 
 export default usersReducer
 
