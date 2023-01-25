@@ -6,7 +6,6 @@ import DialogsContainer from "./components/Dialogs/DialogsContainer";
 import ProfileContainer from "./components/Profile/ProfileContainer";
 import UsersContainer from "./components/Users/UsersContainer";
 import {Header} from "./components/Header/Header";
-import Users from "./components/Users/Users";
 
 
 const App: React.FC = () => {
