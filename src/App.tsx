@@ -2,10 +2,11 @@ import React from 'react';
 import './App.css';
 import {Navbar} from "./components/Navbar/Navbar";
 import {Route} from "react-router-dom";
-import DialogsContainer from "./components/Dialogs/DialogsContainer";
+import {Header} from "./components/Header/Header";
+import {Login} from "./login/Login";
 import ProfileContainer from "./components/Profile/ProfileContainer";
 import UsersContainer from "./components/Users/UsersContainer";
-import {Header} from "./components/Header/Header";
+import DialogsContainer from "./components/Dialogs/DialogsContainer";
 
 
 const App: React.FC = () => {
@@ -24,11 +25,13 @@ const App: React.FC = () => {
             {/*setUsers={setUsers} />*/}
             <div className='app-wrapper-content'>
                 <Route path='/dialogs'
-                       render={() => <DialogsContainer/>}/>
+                       element={() => <DialogsContainer/>}/>
                 <Route path='/profile/:userId?'
-                       render={() => <ProfileContainer />}/>
+                      element={ () => <ProfileContainer/>} />
                 <Route path='/users'
-                       render={() => <UsersContainer/>}/>
+                       element={() => <UsersContainer/>}/>
+                <Route path='/login'
+                       element={() => <Login/>}/>
             </div>
         </div>)
 }

@@ -3,6 +3,7 @@ import React, {ChangeEvent} from 'react';
 import s from './Dialogs.module.css'
 import {Message} from "./Message/Message";
 import {DialogItem} from "./DialogItem/DialogItem";
+import {Navigate} from "react-router-dom";
 
 
 type DialogType = {
@@ -22,6 +23,7 @@ type DialogsPropsType = {
     dialogsPage: DialogPageType
     updateNewMessageBody: (body: string) => void
     sendMessage: () => void
+    isAuth: boolean
 }
 
 const Dialogs = (props: DialogsPropsType) => {
@@ -42,6 +44,8 @@ const Dialogs = (props: DialogsPropsType) => {
         let body = event.target.value;
         props.updateNewMessageBody(body)
     }
+    if (!props.isAuth) return <Navigate to="/login"/>
+
     return (
         <div className={s.dialogs}>
             <div className={s.dialogsItems}> {dialogElement} </div>
