@@ -1,6 +1,7 @@
 import React from "react";
 import s from './ProfileInfo.module.css'
 import PreloaderImg from "../../common/Preloader/Preloader";
+import {ProfileStatus} from "./ProfileStatus";
 
 
 export const ProfileInfo = (props:any) => {
@@ -16,7 +17,7 @@ export const ProfileInfo = (props:any) => {
             </div>
             <div className={s.discripshenBloc}>
                 <img src={props.profile.photos.large}/>
-                Ava + discripshen
+                <ProfileStatus status={'hello Men'}/>
             </div>
         </div>
     )

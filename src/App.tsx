@@ -25,11 +25,11 @@ const App: React.FC = () => {
             {/*setUsers={setUsers} />*/}
             <div className='app-wrapper-content'>
                 <Route path='/dialogs'
-                       element={ <DialogsContainer/>}/>
+                       element={ <DialogsContainer />}/>
                 <Route path='/profile/:userId?'
                       element={ <ProfileContainer/>} />
                 <Route path='/users'
-                       element={ <UsersContainer/>}/>
+                       element={ <UsersContainer />}/>
                 <Route path='/login'
                        element={ <Login/>}/>
             </div>
