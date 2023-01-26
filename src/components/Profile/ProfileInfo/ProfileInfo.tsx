@@ -4,9 +4,9 @@ import PreloaderImg from "../../common/Preloader/Preloader";
 import {ProfileStatus} from "./ProfileStatus";
 
 
-export const ProfileInfo = (props:any) => {
+export const ProfileInfo = (props: any) => {
 
-    if(!props.profile){
+    if (!props.profile) {
         return <PreloaderImg/>
     }
     return (
