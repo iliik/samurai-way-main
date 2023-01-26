@@ -11,6 +11,8 @@ import {
 import {AppStateType} from "../../redux/redux-store";
 import Users from "./Users";
 import Preloader from "../common/Preloader/Preloader";
+import {WithAuthRedirect} from "../../hoc/WithAuthRedirect";
+import {compose} from "redux";
 
 
 type MapStatePropsType = {
@@ -60,10 +62,13 @@ let mapStateToProps = (state: AppStateType): MapStatePropsType => {
         followingInProgress: state.usersPage.followingInProgress
     }
 }
-export default connect<MapStatePropsType, MapDispatchPropsType, {}, AppStateType>(mapStateToProps, {
-    follow: followSuccess, unfollow: unfollowSuccess, setCurrentPage,
-    toggleFollowingProgress, getUser
-})(UsersContainer);
+export default compose(
+    WithAuthRedirect,
+    connect(mapStateToProps, {
+        follow: followSuccess, unfollow: unfollowSuccess, setCurrentPage,
+        toggleFollowingProgress, getUser
+    }))(UsersContainer);
+
 
 export type MapDispatchPropsType = {
     follow: (userId: number) => void

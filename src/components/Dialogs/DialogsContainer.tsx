@@ -2,7 +2,7 @@ import {sendMessageCreator, updateNewMessageBodyCreator} from "../../redux/dialo
 import {connect} from "react-redux";
 import Dialogs from "./Dialogs";
 import {RootStateType} from "../../redux/store";
-import {Dispatch} from "redux";
+import {compose, Dispatch} from "redux";
 import React from "react";
 import {WithAuthRedirect} from "../../hoc/WithAuthRedirect";
 
@@ -23,9 +23,5 @@ let mapDispatchToProps = (dispatch: Dispatch) => {
         }
     }
 }
-let AuthRedirectComponent = WithAuthRedirect(Dialogs)
 
-// Вызвали функцию connect, она вернула нам двойную функцию, и мы вызываем потом ту функцию, который вернул нам предыдущий вызов. Первый вызов настраивает нашу контейнерную компоненту
-const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(AuthRedirectComponent)
-
-export default DialogsContainer;
+export default compose(WithAuthRedirect,connect(mapStateToProps, mapDispatchToProps))(Dialogs)
