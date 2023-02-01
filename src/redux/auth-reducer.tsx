@@ -8,12 +8,17 @@ let initialState = {
     userId: null,
     email: null,
     login: null,
-    isAuth: false,
+    isAuth: true,
 
 }
 
-
-const authReducer = (state = initialState, action: any) => {
+export type InitialStateType = {
+    userId: null | number,
+    email: null | string,
+    login: null | string,
+    isAuth: boolean,
+}
+const authReducer = (state: InitialStateType = initialState, action: any): InitialStateType => {
     switch (action.type) {
         case SET_USER_DATA:
             return {

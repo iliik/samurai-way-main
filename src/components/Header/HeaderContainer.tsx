@@ -1,20 +1,11 @@
 import React from 'react';
 import {Header} from "./Header";
-import {initialStatePropsType} from "../../redux/users-reducer";
+
 import {connect} from "react-redux";
 import {getAuthUserData} from "../../redux/auth-reducer";
 
-export type HeaderContainerType = {
-    toggleIsFetching: (isFetching: boolean) => void
-    setUsers: (users: initialStatePropsType[]) => void
-    setUsersTotalCount: (totalCount: number) => void
-    setAuthUserData: (userId: null, email: null, login: null) => void
-    userId: null,
-    email: null,
-    login: null,
-    isAuth: false,
-    getAuthUserData: () => void
-}
+import {AppStateType} from "../../redux/redux-store";
+
 
 export class HeaderContainer extends React.Component <HeaderContainerType> {
     componentDidMount() {
@@ -26,9 +17,18 @@ export class HeaderContainer extends React.Component <HeaderContainerType> {
     }
 }
 
-const mapStateToProps = (state: initialStatePropsType) => ({
+const mapStateToProps = (state: AppStateType) => ({
     isAuth: state.auth.isAuth,
     login: state.auth.login,
 })
+
+type HeaderContainerType = mapStateToPropsType & mapDispatchToPropsType
+type mapStateToPropsType = {
+    isAuth: boolean,
+    login: null | string
+}
+type mapDispatchToPropsType = {
+    getAuthUserData: () => void
+}
 connect(mapStateToProps, {getAuthUserData})(HeaderContainer)
 

@@ -1,4 +1,4 @@
-import {ActionsTypes, PostType, ProfilePageType} from "./store";
+import {ActionsTypes, PostType, ProfilePageType, ProfileType} from "./store";
 import {Dispatch} from "redux";
 import {profileAPI, usersAPI} from "../api/Api";
 
@@ -18,7 +18,7 @@ export type onPostActionChangeType = {
 }
 export type setUserProfileType = {
     type: "SET_USER_PROFILE"
-    profile: null
+    profile: ProfileType
 }
 export type setStatusType = {
     type: "SET_STATUS"
@@ -34,7 +34,8 @@ let initialState = {
         {id: 4, message: 'Dada', likesCount: 11}
     ],
     newPostText: "it-kamasutra",
-    profile: null,
+    profile: {} as ProfileType,
+    status: ''
 
 }
 
@@ -70,8 +71,8 @@ const profileReducer = (state: ProfilePageType = initialState, action: ActionsTy
                 ...state,
                 status: action.status
             }
-        }
 
+        }
         default:
             return state;
     }
@@ -93,12 +94,15 @@ export const getUserProfile = (userId: number) => (dispatch: Dispatch) => {
         })
 }
 export const getStatus = (userId: number) => (dispatch: Dispatch) => {
+    console.log('getStatus')
     profileAPI.getStatus(userId)
         .then(response => {
             dispatch(setStatus(response.data))
         })
 }
 export const updateStatus = (status: string) => (dispatch: Dispatch) => {
+    console.log('updateStatus')
+
     profileAPI.updateStatus(status)
         .then(response => {
             if (response.data.resultCode === 0) {

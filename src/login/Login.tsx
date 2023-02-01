@@ -10,7 +10,6 @@ export const Login = () => {
         <LoginReduxForm onSubmit={onSubmit}/>
     </div>
 }
-export const LoginReduxForm = reduxForm({form:'login'})(LoginForm) ;
 
 
 export const LoginForm = (props:any) => {
@@ -31,3 +30,4 @@ export const LoginForm = (props:any) => {
 }
 
 
+export const LoginReduxForm = reduxForm({form:'login'})(LoginForm) ;

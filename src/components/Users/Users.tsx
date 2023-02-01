@@ -1,18 +1,19 @@
 import React from "react"
 import s from "./Users.module.css";
 import usersPhoto from "../../assest/images/User.png";
-import {initialStatePropsType} from "../../redux/users-reducer";
+
 import {NavLink} from "react-router-dom";
+import {UserType} from "../../redux/users-reducer";
 
 type TypeUser = {
-    users: initialStatePropsType[];
+    users: UserType[];
     follow: (userId: number) => void
     unfollow: (userId: number) => void
     currentPage: number
     pageSize: number
     totalUsersCount: number
     onPageChanged: (pageNumber: number) => void
-    followingInProgress: []
+    followingInProgress: number[]
 }
 
 let Users = (props: TypeUser) => {
@@ -55,13 +56,10 @@ let Users = (props: TypeUser) => {
                 </div>
             </span>
                 <span>
-                    <div>{u.fullName}</div>
+                    <div>{u.name}</div>
                     <div>{u.status}</div>
                 </span>
-                <span>
-                    <div>{u.location.city}</div>
-                    <div>{u.location.country}</div>
-                </span>
+
             </div>)}
     </div>
 }
