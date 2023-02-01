@@ -1,4 +1,4 @@
-import {sendMessageCreator, updateNewMessageBodyCreator} from "../../redux/dialogs-reducer";
+import {sendMessageCreator} from "../../redux/dialogs-reducer";
 import {connect} from "react-redux";
 import Dialogs from "./Dialogs";
 import {RootStateType} from "../../redux/store";
@@ -13,12 +13,12 @@ let mapStateToProps = (state: RootStateType) => {
 
 let mapDispatchToProps = (dispatch: Dispatch) => {
     return {
-        sendMessage: () => {
-            dispatch(sendMessageCreator())
+        sendMessage: (newMessageBody:string) => {
+            dispatch(sendMessageCreator(newMessageBody))
         },
-        updateNewMessageBody: (body: string) => {
-            dispatch(updateNewMessageBodyCreator(body));
-        }
+        // updateNewMessageBody: (body: string) => {
+        //     dispatch(updateNewMessageBodyCreator(body));
+        // }
     }
 }
  export const DialogsContainer = compose<FC>(connect(mapStateToProps, mapDispatchToProps), WithAuthRedirect)(Dialogs)

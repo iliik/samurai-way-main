@@ -1,11 +1,6 @@
-import dialogReducer, {sendMessageCreatorType, updateNewMessageBodyCreatorType} from "./dialogs-reducer";
-import sidebarReducer from "./sidebar-reducer";
-import profileReducer, {
-    addPostActionCreatorType,
-    onPostActionChangeType,
-    setStatusType,
-    setUserProfileType
-} from "./profile-reducer";
+import {sendMessageCreatorType} from "./dialogs-reducer";
+import {addPostActionCreatorType, onPostActionChangeType, setStatusType, setUserProfileType} from "./profile-reducer";
+import {PhotosType} from "./users-reducer";
 
 
 type DialogType = {
@@ -32,14 +27,35 @@ export type PostType = {
     id?: number,
     message: string,
     likesCount: number
+
 }
 export type ProfilePageType = {
-
     posts: Array<PostType>
-    newPostText: string,
-    profile: null,
-
+    profile:  ProfileType,
+    status: string
+    newPostText:string
 }
+
+export type ProfileType = {
+    userId: number
+    aboutMe: string
+    lookingForAJob: boolean
+    lookingForAJobDescription: string
+    fullName: string
+    photos: PhotosType
+    contacts: {
+        github: string,
+        vk: string
+        facebook:string,
+        instagram:string,
+        twitter:string,
+        website:string,
+        youtube:string,
+        mainLink:string,
+    }
+}
+
+
 export type PostPropsType = {
     postsData: PostType[],
     newPostText: string,
@@ -52,6 +68,7 @@ export type ProfilePagePropsType = {
 }
 export type SidebarType = {}
 export type RootStateType = {
+    newPostText:string
     profilePage: ProfilePageType
     dialogsPage: DialogPageType
     sidebar: SidebarType
@@ -59,6 +76,7 @@ export type RootStateType = {
     auth: {
         isAuth: boolean
     }
+    newMessageBody: string
 
 }
 
@@ -80,7 +98,8 @@ export type PropsTypeForAPP = {
 }
 
 export type ActionsTypes = onPostActionChangeType | addPostActionCreatorType |
-    setUserProfileType | sendMessageCreatorType | updateNewMessageBodyCreatorType | setStatusType
+    setUserProfileType | sendMessageCreatorType  | setStatusType
+/*
 
 let store: StoreType = {
     _state: {
@@ -136,8 +155,8 @@ let store: StoreType = {
         this._onChange();
     }
 }
+*/
 
 
-// @ts-ignore
-window.state = store.getState()
-export default store
+
+// export default store
