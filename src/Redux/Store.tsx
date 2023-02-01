@@ -1,7 +1,11 @@
 import dialogReducer, {sendMessageCreatorType, updateNewMessageBodyCreatorType} from "./dialogs-reducer";
 import sidebarReducer from "./sidebar-reducer";
-import profileReducer, {addPostActionCreatorType, onPostActionChangeType, setUserProfileType} from "./profile-reducer";
-
+import profileReducer, {
+    addPostActionCreatorType,
+    onPostActionChangeType,
+    setStatusType,
+    setUserProfileType
+} from "./profile-reducer";
 
 
 type DialogType = {
@@ -33,7 +37,8 @@ export type ProfilePageType = {
 
     posts: Array<PostType>
     newPostText: string,
-    profile: null
+    profile: null,
+
 }
 export type PostPropsType = {
     postsData: PostType[],
@@ -50,9 +55,9 @@ export type RootStateType = {
     profilePage: ProfilePageType
     dialogsPage: DialogPageType
     sidebar: SidebarType
-    isAuth:boolean
+    isAuth: boolean
     auth: {
-        isAuth:boolean
+        isAuth: boolean
     }
 
 }
@@ -64,6 +69,8 @@ export type StoreType = {
     subscribe: (callback: () => void) => void
     getState: () => RootStateType
     dispatch: (action: ActionsTypes) => void
+
+
 }
 
 //APP
@@ -73,10 +80,11 @@ export type PropsTypeForAPP = {
 }
 
 export type ActionsTypes = onPostActionChangeType | addPostActionCreatorType |
-    setUserProfileType | sendMessageCreatorType | updateNewMessageBodyCreatorType
+    setUserProfileType | sendMessageCreatorType | updateNewMessageBodyCreatorType | setStatusType
 
 let store: StoreType = {
     _state: {
+
         profilePage: {
             posts: [
                 {id: 1, message: 'Hi, how are you?', likesCount: 12},
@@ -84,8 +92,11 @@ let store: StoreType = {
                 {id: 3, message: 'Blabla', likesCount: 11},
                 {id: 4, message: 'Dada', likesCount: 11}
             ],
+
             newPostText: "it-kamasutra",
             profile: null,
+
+
         },
         dialogsPage: {
             dialogs: [

@@ -3,6 +3,13 @@ import s from './ProfileInfo.module.css'
 import PreloaderImg from "../../common/Preloader/Preloader";
 import {ProfileStatus} from "./ProfileStatus";
 
+// export type ProfileInfoType = {
+//     profile: null,
+//     photos:'',
+//     updateStatus:'',
+//     status:string,
+// }
+
 
 export const ProfileInfo = (props: any) => {
 

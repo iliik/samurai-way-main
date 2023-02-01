@@ -35,6 +35,7 @@ export class ProfileStatus extends React.Component<any, any> {
 
     }
 
+
     render() {
         return (
             <div>
@@ -43,6 +44,7 @@ export class ProfileStatus extends React.Component<any, any> {
                         <span onDoubleClick={this.activateEditMode.bind(this)}>{this.props.status || '---'}</span>
                     </div>
                 }
+
                 {!this.state.editMode &&
                     <div>
                         <input onChange={this.onStatusChange} value={this.state.status} autoFocus={true}

@@ -38,11 +38,11 @@ type MapDispatchToProps = {
     updateStatus: () => void
     params: { userId: number }
     getStatus: (userId: number) => void
-    status: (status:string) => void
+    status: (status: string) => void
 }
 type MapStateToProps = {
     profile: null
-    status: (status:string) => void
+    status: string
 
 }
 
