@@ -41,7 +41,7 @@ export const setAuthUserData = (userId: null, email: null, login: null, isAuth: 
     payload: {userId, email, login, isAuth}
 } as const)
 export const getAuthUserData = () => (dispatch: Dispatch) => {
-    authAPI.me()
+    return authAPI.me()
         .then(response => {
             if (response.data.resultCode === 0) {
                 let {id, email, login} = response.data.data
@@ -57,7 +57,7 @@ export const login = (email: null, password: null, rememberMe: null) => (dispatc
             if (response.data.resultCode === 0) {
 // dispatch(getAuthUserData())
             } else {
-                let message =  response.data.messages.length > 0 ? response.data.messages.length [0] : 'Some error'
+                let message = response.data.messages.length > 0 ? response.data.messages.length [0] : 'Some error'
                 dispatch(stopSubmit('login', {_error: message}))
             }
         })

@@ -38,9 +38,9 @@ class ProfileContainer extends React.Component <ProfileContainerType> {
         return (
             <Profile
                 {...this.props}
-                     profile={this.props.profile}
-                     status={this.props.status}
-                     updateStatus={this.props.updateStatus}/>
+                profile={this.props.profile}
+                status={this.props.status}
+                updateStatus={this.props.updateStatus}/>
         )
     }
 }
@@ -55,12 +55,12 @@ type MapDispatchToProps = {
     getStatus: (userId: number) => void
     status: (status: string) => void
 }
+
 type MapStateToProps = {
     profile: ProfileType
     status: string
-    authorizedUserId?:number | null
-    isAuth:boolean | null
-
+    authorizedUserId?: number | null
+    isAuth: boolean | null
 }
 
 let mapStateToProps = (state: AppStateType): MapStateToProps => ({
