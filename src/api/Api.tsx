@@ -11,7 +11,7 @@ export const instance = axios.create({
 
 export const profileAPI = {
     getProfile(userId: number) {
-        return instance.get(`/profile/` + userId)
+        return instance.get(`profile/` + userId)
     },
     getStatus(userId: number) {
         return instance.get(`profile/status/` + userId)
@@ -24,7 +24,13 @@ export const profileAPI = {
 }
 export const authAPI = {
     me() {
-        return instance.get(`/auth/me `)
+        return instance.get(`auth/me `)
+    },
+    login(email: null, password: null, rememberMe: null) {
+        return instance.post(`auth/login `, {email, password, rememberMe})
+    },
+    logout() {
+        return instance.delete(`auth/login `)
     }
 }
 

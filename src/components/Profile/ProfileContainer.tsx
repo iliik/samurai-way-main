@@ -1,4 +1,4 @@
-import React, {Component, ComponentType, FC} from 'react';
+import React, { ComponentType, FC} from 'react';
 import {Profile} from "./Profile";
 import {connect} from "react-redux";
 import {getStatus, getUserProfile, updateStatus} from "../../redux/profile-reducer";

@@ -3,17 +3,20 @@ import s from "./Header.module.css";
 import {NavLink} from "react-router-dom";
 
 export type HeaderType = {
-    isAuth: false
+    isAuth: boolean
     login: null
+    logout:()=>void
 }
 
 export const Header = (props: HeaderType) => {
-    return (
-        <header className={s.header}>
+    return <header className={s.header}>
+
             <img src='https://www.nasa.gov/sites/default/files/thumbnails/image/nasa-logo-web-rgb.png'/>
+
             <div className={s.loginBlock}>
-                {props.isAuth ? props.login : <NavLink to={'/Login'}>Login</NavLink>}
+                {props.isAuth
+                    ? <div>{props.login} - <button onClick={props.logout}> Log out</button></div>
+                    : <NavLink to={'/Login'}>Login</NavLink>}
             </div>
         </header>
-    )
 }
