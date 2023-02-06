@@ -1,4 +1,4 @@
-import React, { ComponentType, FC} from 'react';
+import React, {ComponentType, FC} from 'react';
 import {Profile} from "./Profile";
 import {connect} from "react-redux";
 import {getStatus, getUserProfile, updateStatus} from "../../redux/profile-reducer";
@@ -9,12 +9,11 @@ import {ProfileType} from "../../redux/store";
 import {useParams} from "react-router-dom";
 
 
+export type ProfileContainerType = MapStateToProps & MapDispatchToProps & { match: { userId: number } }
 
-export type ProfileContainerType = MapStateToProps & MapDispatchToProps & {match:{userId: number}}
 
-
-export function withRouter<T>(Children: ComponentType<T>){
-    return function(props: T){
+export function withRouter<T>(Children: ComponentType<T>) {
+    return function (props: T) {
         const match = useParams()
         const newProps = {...props, match}
         return <Children {...newProps}/>
@@ -28,7 +27,7 @@ class ProfileContainer extends React.Component <ProfileContainerType> {
         console.log(this.props)
         let userId = this.props.match.userId
         if (!userId) {
-            userId = 4
+            userId = this.props.authorizedUserId as number
         }
         this.props.getUserProfile(userId)
         this.props.getStatus(userId)
@@ -37,7 +36,10 @@ class ProfileContainer extends React.Component <ProfileContainerType> {
 
     render() {
         return (
-            <Profile {...this.props} profile={this.props.profile} status={this.props.status}
+            <Profile
+                {...this.props}
+                     profile={this.props.profile}
+                     status={this.props.status}
                      updateStatus={this.props.updateStatus}/>
         )
     }
@@ -56,17 +58,21 @@ type MapDispatchToProps = {
 type MapStateToProps = {
     profile: ProfileType
     status: string
+    authorizedUserId?:number | null
+    isAuth:boolean | null
 
 }
 
 let mapStateToProps = (state: AppStateType): MapStateToProps => ({
     profile: state.profilePage.profile,
-    status: state.profilePage.status
+    status: state.profilePage.status,
+    authorizedUserId: state.auth.userId,
+    isAuth: state.auth.isAuth
 })
 
 export default compose<FC>(
     connect(mapStateToProps, {getUserProfile, getStatus, updateStatus}),
     withRouter,
     WithAuthRedirect
-     )(ProfileContainer)
+)(ProfileContainer)
 

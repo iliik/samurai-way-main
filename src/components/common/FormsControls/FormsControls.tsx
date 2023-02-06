@@ -1,5 +1,5 @@
 import React from 'react';
-import s from './FormsControl.module.css'
+import style from './FormsControl.module.css'
 
 
 // @ts-ignore
@@ -7,7 +7,7 @@ const FormControl = ({input, meta, child, ...props}) => {
     const hasError = meta.touched && meta.error;
 
     return (
-        <div className={s.formControl + "" + (hasError ? s.error : '')}>
+        <div className={style.formControl + "" + (hasError ? style.error : '')}>
             <div>
                 {props.children}
             </div>

@@ -1,10 +1,11 @@
 import React from "react"
 import {Field, reduxForm} from "redux-form";
 import {Input} from "../components/common/FormsControls/FormsControls";
-import {maxLengthCreator, required} from "../utils/validator/validators";
+import {required} from "../utils/validator/validators";
 import {connect} from "react-redux";
 import {Navigate} from "react-router-dom";
 import {AppStateType} from "../redux/redux-store";
+import style from './../components/common/FormsControls/FormsControl.module.css'
 
 // type StateType ={
 //     state:InitialStateType
@@ -18,20 +19,22 @@ import {AppStateType} from "../redux/redux-store";
 //     rememberMe:null | number,
 // }
 
-
-const maxLength15 = maxLengthCreator(15)
-
 export const LoginForm = (props: any) => {
     return <form onSubmit={props.handleSubmit}>
         <div>
-            <Field placeholder={"Email"} name={'email'} component={Input} validate={[required, maxLength15]}/>
+            <Field placeholder={"Email"} name={'email'} component={Input} validate={[required]}/>
         </div>
         <div>
-            <Field placeholder={"Password"} name={'password'} component={Input} type={'password'} validate={[required, maxLength15]}/>
+            <Field placeholder={"Password"} name={'password'} component={Input} type={'password'}
+                   validate={[required]}/>
         </div>
         <div>
             <Field type={'checkbox'} name={'rememberMe'} component={Input}/>remember me
         </div>
+        {props.error && <div className={style.formError}>
+            {props.error}
+        </div>
+        }
         <div>
             <button> Login</button>
         </div>
@@ -43,8 +46,8 @@ export const Login = (props: any) => {
     const onSubmit = (formData: any) => {
         props.login(formData.email, formData.password, formData.rememberMe)
     }
-    if(props.isAuth){
-        // eslint-disable-next-line react/jsx-no-undef
+    if (props.isAuth) {
+
         return <Navigate to={'profile'}/>
     }
     return <div>
@@ -57,9 +60,9 @@ export const Login = (props: any) => {
 export const LoginReduxForm = reduxForm({form: 'login'})(LoginForm);
 
 
-const mapStateToProps = (state:AppStateType) =>{
+const mapStateToProps = (state: AppStateType) => {
     // eslint-disable-next-line @typescript-eslint/no-unused-expressions
-     isAuth: state.auth.isAuth
+    isAuth: state.auth.isAuth
 }
 
-export default connect(mapStateToProps, {login})(Login)
+export default connect(mapStateToProps, {})(Login)
