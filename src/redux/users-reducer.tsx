@@ -48,25 +48,6 @@ type ActionsTypes =
     | toggleisFetchingCreatorType
     | toggleFollowingProgressType
 
-export type locationType = {
-    city: string,
-    country: string
-}
-/*export type initialStatePropsType = {
-    auth: {
-        isAuth: false,
-        login: null
-    };
-    id: number,
-    followed: boolean,
-    fullName: string,
-    status: string,
-    photoUrl: string
-    location: locationType
-    photos: string,
-    toggleFollowingProgress: (isFetching: boolean, userId: number) => void
-    followingInProgress: [],
-}*/
 export type UserType = {
     id: number
     name: string
@@ -74,11 +55,11 @@ export type UserType = {
     photos: PhotosType
     followed: boolean
 }
-export type PhotosType ={
+export type PhotosType = {
     small: string
     large: string
 }
-type InitialStateType ={
+type InitialStateType = {
     users: UserType[]
     pageSize: number
     totalUsersCount: number,
@@ -95,8 +76,6 @@ let initialState = {
     isFetching: false,
     followingInProgress: [],
 }
-
-
 
 
 const usersReducer = (state: InitialStateType = initialState, action: ActionsTypes): InitialStateType => {
@@ -157,12 +136,12 @@ export const toggleFollowingProgress = (isFetching: boolean, userId: number) => 
 } as const)
 
 
-export const getUser = (currentPage: number, pageSize: number) => {
+export const requestUsers = (page: number, pageSize: number) => {
     return (dispatch: Dispatch) => {
-
         dispatch(toggleIsFetching(true))
+        dispatch(setCurrentPage(page))
 
-        usersAPI.getUsers(currentPage, pageSize)
+        usersAPI.getUsers(page, pageSize)
             .then(data => {
                 dispatch(toggleIsFetching(false))
                 dispatch(setUsers(data.items))
