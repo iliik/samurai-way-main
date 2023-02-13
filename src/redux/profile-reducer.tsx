@@ -39,7 +39,7 @@ let initialState = {
     newPostText:''
 }
 
-const profileReducer = (state: ProfilePageType = initialState, action: ActionsTypes): ProfilePageType => {
+const profileReducer = (state: { posts: ({ likesCount: number; id: number; message: string } | { likesCount: number; id: number; message: string } | { likesCount: number; id: number; message: string } | { likesCount: number; id: number; message: string })[] }, action: { readonly newPostText: string; readonly type: string }): ProfilePageType => {
     switch (action.type) {
         case ADD_POST: {
             let newPost: PostType = {
