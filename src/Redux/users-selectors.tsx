@@ -4,6 +4,9 @@ import {createSelector} from "reselect";
 export const getUsersSelector = (state: AppStateType) => {
     return state.usersPage.users
 }
+export const getUserSelector = (state: AppStateType) => {
+    return state.usersPage.user
+}
 export const getUsers = createSelector(getUsersSelector,
     (users)=>{
     return users.filter(u => true)

@@ -69,7 +69,7 @@ class UsersContainer extends React.Component<UsersContainerTyProps> {
 
 let mapStateToProps = (state: AppStateType): MapStatePropsType => {
     return {
-        user: getUserSelector(state),
+         user: getUserSelector(state),
         users: getUsers(state),
         pageSize: getPageSize(state),
         totalUsersCount: getTotalUsersCount(state),

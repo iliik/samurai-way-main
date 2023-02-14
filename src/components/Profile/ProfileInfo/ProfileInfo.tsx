@@ -4,14 +4,11 @@ import PreloaderImg from "../../common/Preloader/Preloader";
 import {ProfileType} from "../../../redux/store";
 import {ProfileStatusWithHooks} from "./ProfileStatusWithHooks";
 
-
 type ProfileInfoType = {
     profile: ProfileType
     status: string
-    updateStatus: (status: string)=>void
-
+    updateStatus: (status: string) => void
 }
-
 
 export const ProfileInfo = (props: ProfileInfoType) => {
 
@@ -27,7 +24,7 @@ export const ProfileInfo = (props: ProfileInfoType) => {
             <div className={s.discripshenBloc}>
                 <p>{props.profile?.fullName}</p>
                 <img src={props.profile?.photos?.large}/>
-                <ProfileStatusWithHooks status={props.status} updateStatus={props.updateStatus} />
+                <ProfileStatusWithHooks status={props.status} updateStatus={props.updateStatus}/>
             </div>
         </div>
     )
