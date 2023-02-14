@@ -1,10 +1,11 @@
 import React, {FC} from "react"
 import {connect} from "react-redux";
 import {
+    follow,
     followSuccess, PhotosType,
     requestUsers,
     setCurrentPage,
-    toggleFollowingProgress,
+    toggleFollowingProgress, unfollow,
     unfollowSuccess,
     UserType
 } from "../../redux/users-reducer";
@@ -82,7 +83,7 @@ let mapStateToProps = (state: AppStateType): MapStatePropsType => {
 
 export default compose<FC>(
     connect(mapStateToProps, {
-        follow: followSuccess, unfollow: unfollowSuccess, setCurrentPage,
+        follow, unfollow, setCurrentPage,
         toggleFollowingProgress, getUser: requestUsers
     }))(UsersContainer);
 

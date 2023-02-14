@@ -1,30 +1,40 @@
 import React from "react"
-import {Field, reduxForm} from "redux-form";
-import {createField, Input} from "../components/common/FormsControls/FormsControls";
-import {required} from "../utils/validator/validators";
+import {Field, InjectedFormProps, reduxForm} from "redux-form";
+import {Input} from "../components/common/FormsControls/FormsControls";
 import {connect} from "react-redux";
 import {Navigate} from "react-router-dom";
 import {AppStateType} from "../redux/redux-store";
 import style from './../components/common/FormsControls/FormsControl.module.css'
+import {Dispatch} from "redux";
 
-// type CreateFieldType = {
-//     placeholder: string
-//     name: string
-//     component: () => void
-//     validate: () => void
-//     text: string
-//     props: {}
-// }
-export const LoginForm = (handleSubmit: any, error: any) => {
-    return <form onSubmit={handleSubmit}>
-        {createField("Email", "email", [required], Input)}
-        {createField("Password", 'password', [required], Input, {type: 'password'})}
-        {createField(null, "rememberMe", [], Input, {type: 'checkbox'}, "remember me")}
+
+type FormDataType = {
+    login: string
+    password: string
+    rememberMe: boolean
+}
+
+type OwnPropsType = {
+    handleSubmit: () => void
+}
+
+export type DispatchPropsType = {
+    onSubmit: (data: FormDataType, dispatch: Dispatch<any>, props: OwnPropsType) => void
+}
+
+type MixFromPropsType = OwnPropsType & DispatchPropsType & InjectedFormProps<FormDataType, OwnPropsType>
+
+
+export const LoginForm: React.FC<MixFromPropsType> = (props) => {
+    return <form onSubmit={props.handleSubmit}>
+        {/*{createField("Email", "email", [required], Input)}*/}
+        {/*{createField("Password", 'password', [required], Input, {type: 'password'})}*/}
+        {/*{createField(null, "rememberMe", [], Input, {type: 'checkbox'}, "remember me")}*/}
         <div>
             <Field type={'checkbox'} name={'rememberMe'} component={Input}/>remember me
         </div>
-        {error && <div className={style.formError}>
-            {error}
+        {props.error && <div className={style.formError}>
+            {props.error}
         </div>
         }
         <div>
@@ -35,7 +45,7 @@ export const LoginForm = (handleSubmit: any, error: any) => {
 
 
 export const Login = (props: any) => {
-    const onSubmit = (formData: any) => {
+    const onSubmit = (formData: FormDataType) => {
 
         // @ts-ignore
         props.login(formData.email, formData.password, formData.rememberMe)
@@ -46,15 +56,17 @@ export const Login = (props: any) => {
     }
     return <div>
         <h1>Login</h1>
-        <LoginReduxForm onSubmit={onSubmit}/>
+        <LoginReduxForm  onSubmit={onSubmit}/>
     </div>
 }
 
 
-export const LoginReduxForm = reduxForm({form: 'login'})(LoginForm);
+// @ts-ignore
+export const LoginReduxForm = reduxForm<FormDataType>({form: 'login'})(LoginForm);
 
 
 const mapStateToProps = (state: AppStateType) => {
+
     // eslint-disable-next-line @typescript-eslint/no-unused-expressions
     isAuth: state.auth.isAuth
 }

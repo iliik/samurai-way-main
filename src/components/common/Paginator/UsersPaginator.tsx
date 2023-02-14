@@ -19,8 +19,8 @@ let UsersPaginator = (props: TypeUsersPaginator) => {
     }
 
     return<div>
-            {pages.map(p => {
-                return <span className={props.currentPage === p && s.selectedPage} onClick={(e) => {
+            {pages.map((p, i) => {
+                return <span key={`${p}_${i}`} className={props.currentPage === p ? s.selectedPage : ''} onClick={(e) => {
                     props.onPageChanged(p)
                 }}>{p}</span>
             })}

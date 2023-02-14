@@ -67,13 +67,13 @@ type InitialStateType = {
     currentPage: number,
     isFetching: boolean,
     followingInProgress: number[],
-    user?: {
+    user: {
         id: number
         name: string
         status: string
         photos: PhotosType
         followed: boolean
-    }
+    } | null
 
 }
 let initialState = {
@@ -83,6 +83,7 @@ let initialState = {
     currentPage: 1,
     isFetching: false,
     followingInProgress: [],
+    user: null
 }
 
 

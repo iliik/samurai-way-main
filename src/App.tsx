@@ -12,10 +12,11 @@ import {compose} from "redux";
 import {initializeApp} from "./redux/app-reducer";
 import Preloader from "./components/common/Preloader/Preloader";
 import {AppStateType} from "./redux/redux-store";
+import {HeaderContainer} from "./components/Header/HeaderContainer";
+import {getAuthUserData} from "./redux/auth-reducer";
 
-// const App: React.FC = () =>
 class App extends Component<any, any> {
-
+// const App :React.FC = () =>{
     componentDidMount() {
         this.props.initializeApp()
     }
@@ -27,7 +28,7 @@ class App extends Component<any, any> {
 
         return (
             <div className='app-wrapper'>
-                <Header isAuth={false} login={null}/>
+                <HeaderContainer isAuth={false} login={null} getAuthUserData={getAuthUserData}/>
                 <Navbar/>
                 <div className='app-wrapper-content'>
                     <Routes>
@@ -48,11 +49,11 @@ class App extends Component<any, any> {
 }
 
 
-const mapStateToProps = (state: AppStateType) => {
-    // eslint-disable-next-line @typescript-eslint/no-unused-expressions
+const mapStateToProps = (state: AppStateType) => ({
+
     initialized: state.app.initialized
 
-}
+})
 
 export default compose(
     connect(mapStateToProps, {initializeApp})(App))

@@ -7,7 +7,7 @@ import {AppStateType} from "../../redux/redux-store";
 
 export class HeaderContainer extends React.Component <HeaderContainerType> {
 
-    return() {
+    render() {
         return <Header isAuth={false} login={null} logout={logout} />
     }
 }

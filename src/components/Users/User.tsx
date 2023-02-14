@@ -19,6 +19,7 @@ type TypeUser = {
 }
 
 export let User = (props: TypeUser) => {
+    console.log(props.user)
     return <div>
             <span>
                 <div>
