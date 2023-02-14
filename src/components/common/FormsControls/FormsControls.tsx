@@ -1,19 +1,18 @@
 import React from 'react';
 import style from './FormsControl.module.css'
 import {Field} from "redux-form";
-import {behaviorPlugin} from "@testing-library/user-event/dist/keyboard/types";
 
 
 // @ts-ignore
-const FormControl = ({input, meta, child, ...props}) => {
-    const hasError = meta.touched && meta.error;
+const FormControl = ({input, meta:{touched,error}, children}) => {
+    const hasError = touched && error;
 
     return (
         <div className={style.formControl + "" + (hasError ? style.error : '')}>
             <div>
-                {props.children}
+                {children}
             </div>
-            {hasError && <span>{meta.error}</span>}
+            {hasError && <span>{error}</span>}
         </div>
     )
 }
