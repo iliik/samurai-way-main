@@ -67,6 +67,13 @@ type InitialStateType = {
     currentPage: number,
     isFetching: boolean,
     followingInProgress: number[],
+    user?: {
+        id: number
+        name: string
+        status: string
+        photos: PhotosType
+        followed: boolean
+    }
 
 }
 let initialState = {

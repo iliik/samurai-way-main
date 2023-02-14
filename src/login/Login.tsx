@@ -7,7 +7,14 @@ import {Navigate} from "react-router-dom";
 import {AppStateType} from "../redux/redux-store";
 import style from './../components/common/FormsControls/FormsControl.module.css'
 
-
+// type CreateFieldType = {
+//     placeholder: string
+//     name: string
+//     component: () => void
+//     validate: () => void
+//     text: string
+//     props: {}
+// }
 export const LoginForm = (handleSubmit: any, error: any) => {
     return <form onSubmit={handleSubmit}>
         {createField("Email", "email", [required], Input)}
@@ -29,6 +36,8 @@ export const LoginForm = (handleSubmit: any, error: any) => {
 
 export const Login = (props: any) => {
     const onSubmit = (formData: any) => {
+
+        // @ts-ignore
         props.login(formData.email, formData.password, formData.rememberMe)
     }
     if (props.isAuth) {
