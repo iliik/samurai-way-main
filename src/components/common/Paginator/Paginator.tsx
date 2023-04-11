@@ -1,5 +1,6 @@
 import React, {useState} from "react"
 import s from "./UsersPaginator.module.css";
+import cn from 'classnames'
 
 type TypeUsersPaginator = {
     currentPage: number
@@ -29,8 +30,8 @@ export const Paginator = (props: TypeUsersPaginator,portionSize = 10) => {
             <button onClick={() => {setPortionNumber(portionNumber - 1)}}> PREV</button>}
         {pages.filter(p => p >= leftPortionPageNumber && p <= rightPortionPageNumber)
             .map((p, i) => {
-                return <span key={`${p}_${i}`}
-                             className={props.currentPage === p ? s.selectedPage : ''}
+
+                return <span className={cn({[s.selectedPage] : props.currentPage === p},s.pageNumber)}
                              onClick={(e) => {props.onPageChanged(p)}}>{p}</span>})}
         {portionCount > portionNumber &&
             <button onClick={() => {setPortionNumber(portionNumber + 1)}}>NEXT</button>}
