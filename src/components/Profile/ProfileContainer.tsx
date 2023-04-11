@@ -23,15 +23,30 @@ export function withRouter<T>(Children: ComponentType<T>) {
 
 class ProfileContainer extends React.Component <ProfileContainerType> {
 
+
+
+
     componentDidMount() {
-        console.log(this.props)
         let userId = this.props.match.userId
         if (!userId) {
             userId = this.props.authorizedUserId as number
+            if(!userId){
+                this.props.history.push('/login')
+            }
         }
         this.props.getUserProfile(userId)
         this.props.getStatus(userId)
-
+    }
+    componentDidUpdate(prevProps: Readonly<ProfileContainerType>, prevState: Readonly<{}>, snapshot?: any) {
+        let userId = this.props.match.userId
+        if (!userId) {
+            userId = this.props.authorizedUserId as number
+            if(!userId){
+                this.props.history.push('/login')
+            }
+        }
+        this.props.getUserProfile(userId)
+        this.props.getStatus(userId)
     }
 
     render() {
