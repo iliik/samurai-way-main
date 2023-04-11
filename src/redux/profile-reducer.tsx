@@ -36,7 +36,8 @@ let initialState = {
     ],
     profile: {} as ProfileType,
     status: '',
-    newPostText: ''
+    newPostText: '',
+    isOwner: true
 }
 
 const profileReducer = (state: ProfilePageType = initialState, action: ActionsTypes): ProfilePageType => {

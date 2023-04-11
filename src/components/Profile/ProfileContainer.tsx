@@ -23,36 +23,35 @@ export function withRouter<T>(Children: ComponentType<T>) {
 
 class ProfileContainer extends React.Component <ProfileContainerType> {
 
-
-
-
-    componentDidMount() {
+    refreshProfile() {
         let userId = this.props.match.userId
         if (!userId) {
             userId = this.props.authorizedUserId as number
-            if(!userId){
-                this.props.history.push('/login')
-            }
+            // if (!userId) {
+            //     this.props.history.push('/login')
+            // }
         }
         this.props.getUserProfile(userId)
         this.props.getStatus(userId)
     }
-    componentDidUpdate(prevProps: Readonly<ProfileContainerType>, prevState: Readonly<{}>, snapshot?: any) {
-        let userId = this.props.match.userId
-        if (!userId) {
-            userId = this.props.authorizedUserId as number
-            if(!userId){
-                this.props.history.push('/login')
-            }
+
+
+    componentDidMount() {
+        this.refreshProfile();
+    }
+
+    componentDidUpdate(prevProps: Readonly<ProfileContainerType>, prevState: Readonly<{}>) {
+        if (this.props.match.userId != prevProps.match.userId) {
+            this.refreshProfile();
         }
-        this.props.getUserProfile(userId)
-        this.props.getStatus(userId)
+
     }
 
     render() {
         return (
             <Profile
                 {...this.props}
+                isOwner={!this.props.match.userId}
                 profile={this.props.profile}
                 status={this.props.status}
                 updateStatus={this.props.updateStatus}/>
@@ -76,13 +75,15 @@ type MapStateToProps = {
     status: string
     authorizedUserId?: number | null
     isAuth: boolean | null
+    isOwner:boolean
 }
 
 let mapStateToProps = (state: AppStateType): MapStateToProps => ({
     profile: state.profilePage.profile,
     status: state.profilePage.status,
     authorizedUserId: state.auth.userId,
-    isAuth: state.auth.isAuth
+    isAuth: state.auth.isAuth,
+    isOwner:state.profilePage.isOwner
 })
 
 export default compose<FC>(

@@ -9,6 +9,7 @@ type ProfileInfoType = {
     profile: ProfileType
     status: string
     updateStatus: (status: string) => void
+    isOwner:boolean
 }
 
 export const ProfileInfo = (props: ProfileInfoType) => {
@@ -25,6 +26,7 @@ export const ProfileInfo = (props: ProfileInfoType) => {
             <div className={s.discripshenBloc}>
                 <p>{props.profile?.fullName}</p>
                 <img src={props.profile?.photos?.large || usersPhoto} className={s.mainPhoto}/>
+                {props.isOwner && <input type={'file'}/>}
                 <ProfileStatusWithHooks status={props.status} updateStatus={props.updateStatus}/>
             </div>
         </div>
