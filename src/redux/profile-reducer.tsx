@@ -6,6 +6,7 @@ import {profileAPI, usersAPI} from "../api/Api";
 const ADD_POST = 'ADD-POST';
 const SET_USER_PROFILE = "SET_USER_PROFILE";
 const SET_STATUS = "SET_STATUS";
+const SET_PHOTOS = "SET_PHOTOS";
 
 export type addPostActionCreatorType = {
     type: 'ADD-POST'
@@ -25,6 +26,10 @@ export type setStatusType = {
     type: "SET_STATUS"
     status: string
 }
+export type setPhotosType = {
+    type: 'SET_PHOTOS'
+    photos: any
+}
 
 
 let initialState = {
@@ -37,7 +42,8 @@ let initialState = {
     profile: {} as ProfileType,
     status: '',
     newPostText: '',
-    isOwner: true
+    isOwner: true,
+    savePhoto: ''
 }
 
 const profileReducer = (state: ProfilePageType = initialState, action: ActionsTypes): ProfilePageType => {
@@ -66,6 +72,12 @@ const profileReducer = (state: ProfilePageType = initialState, action: ActionsTy
                 status: action.status
             }
         }
+        case SET_PHOTOS: {
+            return {
+                ...state,
+                profile: {...state.profile, photos: action.photos}
+            }
+        }
         default:
             return state;
     }
@@ -74,6 +86,7 @@ const profileReducer = (state: ProfilePageType = initialState, action: ActionsTy
 export const addPostActionCreator = (newPostText: string) => ({type: ADD_POST, newPostText} as const)
 export const setUserProfile = (profile: null) => ({type: SET_USER_PROFILE, profile} as const)
 export const setStatus = (status: string) => ({type: SET_STATUS, status} as const)
+export const savePhotoSuccess = (photos: any) => ({type: SET_PHOTOS, photos} as const)
 
 
 export const getUserProfile = (userId: number) => async (dispatch: Dispatch) => {
@@ -91,6 +104,13 @@ export const updateStatus = (status: string) => async (dispatch: Dispatch) => {
 
     if (response.data.resultCode === 0) {
         dispatch(setStatus(status))
+    }
+}
+export const savePhoto = (file: any) => async (dispatch: Dispatch) => {
+    let response = await profileAPI.savePhoto(file)
+
+    if (response.data.resultCode === 0) {
+        dispatch(savePhotoSuccess(response.data.data.photos))
     }
 }
 

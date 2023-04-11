@@ -1,5 +1,11 @@
 import {sendMessageCreatorType} from "./dialogs-reducer";
-import {addPostActionCreatorType, onPostActionChangeType, setStatusType, setUserProfileType} from "./profile-reducer";
+import {
+    addPostActionCreatorType,
+    onPostActionChangeType,
+    setPhotosType,
+    setStatusType,
+    setUserProfileType
+} from "./profile-reducer";
 import {PhotosType} from "./users-reducer";
 
 
@@ -25,10 +31,12 @@ export type PostType = {
 
 }
 export type ProfilePageType = {
+    isOwner: boolean;
     posts: Array<PostType>
     profile:  ProfileType,
     status: string
     newPostText:string
+    savePhoto:any
 }
 
 export type ProfileType = {
@@ -65,4 +73,4 @@ export type RootStateType = {
 }
 
 export type ActionsTypes = onPostActionChangeType | addPostActionCreatorType |
-    setUserProfileType | sendMessageCreatorType  | setStatusType
+    setUserProfileType | sendMessageCreatorType  | setStatusType | setPhotosType

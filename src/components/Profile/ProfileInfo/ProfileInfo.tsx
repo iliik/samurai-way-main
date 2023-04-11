@@ -9,7 +9,8 @@ type ProfileInfoType = {
     profile: ProfileType
     status: string
     updateStatus: (status: string) => void
-    isOwner:boolean
+    isOwner: boolean
+    savePhoto: any
 }
 
 export const ProfileInfo = (props: ProfileInfoType) => {
@@ -17,16 +18,20 @@ export const ProfileInfo = (props: ProfileInfoType) => {
     if (!props.profile) {
         return <PreloaderImg/>
     }
+
+    const onMainPhotoSelector = (e: any) => {
+        if (e.target.files.length) {
+            props.savePhoto(e.target.files[0])
+        }
+    }
     return (
         <div>
             <div>
-                <img
-                    src="https://images.pexels.com/photos/531880/pexels-photo-531880.jpeg?cs=srgb&dl=pexels-pixabay-531880.jpg&fm=jpg"/>
-            </div>
+                <img src="https://images.pexels.com/photos/531880/pexels-photo-531880.jpeg?cs=srgb&dl=pexels-pixabay-531880.jpg&fm=jpg"/></div>
             <div className={s.discripshenBloc}>
                 <p>{props.profile?.fullName}</p>
                 <img src={props.profile?.photos?.large || usersPhoto} className={s.mainPhoto}/>
-                {props.isOwner && <input type={'file'}/>}
+                {props.isOwner && <input type={'file'} onChange={onMainPhotoSelector}/>}
                 <ProfileStatusWithHooks status={props.status} updateStatus={props.updateStatus}/>
             </div>
         </div>
