@@ -1,7 +1,10 @@
 import React from "react"
 import {PhotosType, UserType} from "../../redux/users-reducer";
-import Paginator from "src/components/common/Paginator/Paginator";
+
 import {User} from "./User";
+import {Paginator} from "./../common/Paginator/Paginator";
+
+
 
 
 type TypeUser = {
@@ -13,6 +16,7 @@ type TypeUser = {
     totalUsersCount: number
     onPageChanged: (pageNumber: number) => void
     followingInProgress: number[]
+
     user: {
         id: number
         name: string
@@ -24,10 +28,13 @@ type TypeUser = {
 
 let Users = (props: TypeUser) => {
     return <div>
+
+        {/* eslint-disable-next-line react/jsx-no-undef */}
         <Paginator currentPage={props.currentPage}
                    pageSize={props.pageSize}
                    onPageChanged={props.onPageChanged}
-                   totalUsersCount={props.totalUsersCount}/>
+                   totalUsersCount={props.totalUsersCount}
+       />
         <div>
             {props.users.map(u => <User follow={props.follow}
                                         unfollow={props.unfollow}

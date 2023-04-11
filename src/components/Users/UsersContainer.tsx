@@ -30,6 +30,7 @@ export type MapStatePropsType = {
     totalUsersCount: number
     isFetching: boolean
     followingInProgress: number[]
+
     user: {
         id: number
         name: string
@@ -63,6 +64,7 @@ class UsersContainer extends React.Component<UsersContainerTyProps> {
                    follow={this.props.follow}
                    unfollow={this.props.unfollow}
                    followingInProgress={this.props.followingInProgress}
+
             />
         </>
     }
