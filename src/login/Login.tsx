@@ -1,6 +1,6 @@
 import React from "react"
 import {Field, InjectedFormProps, reduxForm} from "redux-form";
-import {Input} from "../components/common/FormsControls/FormsControls";
+import {createField, Input} from "../components/common/FormsControls/FormsControls";
 import {connect} from "react-redux";
 import {Navigate} from "react-router-dom";
 import {AppStateType} from "../redux/redux-store";
@@ -8,7 +8,9 @@ import style from './../components/common/FormsControls/FormsControl.module.css'
 import {Dispatch} from "redux";
 
 
+
 type FormDataType = {
+    email:string
     login: string
     password: string
     rememberMe: boolean

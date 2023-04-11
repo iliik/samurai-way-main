@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import './App.css';
 import {Navbar} from "./components/Navbar/Navbar";
 import {Route, Routes} from "react-router-dom";
-import {Header} from "./components/Header/Header";
 import {Login} from "./login/Login";
 import {DialogsContainer} from "./components/Dialogs/DialogsContainer";
 import ProfileContainer from "./components/Profile/ProfileContainer";
@@ -16,7 +15,7 @@ import {HeaderContainer} from "./components/Header/HeaderContainer";
 import {getAuthUserData} from "./redux/auth-reducer";
 
 class App extends Component<any, any> {
-// const App :React.FC = () =>{
+
     componentDidMount() {
         this.props.initializeApp()
     }
@@ -52,7 +51,6 @@ class App extends Component<any, any> {
 const mapStateToProps = (state: AppStateType) => ({
 
     initialized: state.app.initialized
-
 })
 
 export default compose(

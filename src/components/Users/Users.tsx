@@ -1,6 +1,6 @@
 import React from "react"
 import {PhotosType, UserType} from "../../redux/users-reducer";
-import UsersPaginator from "../common/Paginator/UsersPaginator";
+import Paginator from "src/components/common/Paginator/Paginator";
 import {User} from "./User";
 
 
@@ -24,10 +24,10 @@ type TypeUser = {
 
 let Users = (props: TypeUser) => {
     return <div>
-        <UsersPaginator currentPage={props.currentPage}
-                        pageSize={props.pageSize}
-                        onPageChanged={props.onPageChanged}
-                        totalUsersCount={props.totalUsersCount}/>
+        <Paginator currentPage={props.currentPage}
+                   pageSize={props.pageSize}
+                   onPageChanged={props.onPageChanged}
+                   totalUsersCount={props.totalUsersCount}/>
         <div>
             {props.users.map(u => <User follow={props.follow}
                                         unfollow={props.unfollow}

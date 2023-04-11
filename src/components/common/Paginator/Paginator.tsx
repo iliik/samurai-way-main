@@ -1,4 +1,4 @@
-import React from "react"
+import React, {useState} from "react"
 import s from "./UsersPaginator.module.css";
 
 type TypeUsersPaginator = {
@@ -9,7 +9,7 @@ type TypeUsersPaginator = {
 
 }
 
-let UsersPaginator = (props: TypeUsersPaginator) => {
+let Paginator = (props: TypeUsersPaginator) => {
 
     let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize)
 
@@ -17,8 +17,12 @@ let UsersPaginator = (props: TypeUsersPaginator) => {
     for (let i = 0; i <= pagesCount; i++) {
         pages.push(i)
     }
+    let portionCount=Math.ceil(pagesCount / portionSize)
+    let [portionNumber , setPortionNumber] = useState( -1)
+    let leftPortionPageNumber = (portionNumber -1) * portioSize +1
+    let rightPortionPageNumber = portionNumber * portionSize
 
-    return<div>
+    return<div className={style.paginator}>
             {pages.map((p, i) => {
                 return <span key={`${p}_${i}`} className={props.currentPage === p ? s.selectedPage : ''} onClick={(e) => {
                     props.onPageChanged(p)
@@ -26,4 +30,4 @@ let UsersPaginator = (props: TypeUsersPaginator) => {
             })}
         </div>
 }
-export default UsersPaginator
+export default Paginator
