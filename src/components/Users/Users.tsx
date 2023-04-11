@@ -33,7 +33,7 @@ let Users = (props: TypeUser) => {
         <Paginator currentPage={props.currentPage}
                    pageSize={props.pageSize}
                    onPageChanged={props.onPageChanged}
-                   totalUsersCount={props.totalUsersCount}
+                   totalItemsCount={props.totalUsersCount}
        />
         <div>
             {props.users.map(u => <User follow={props.follow}
