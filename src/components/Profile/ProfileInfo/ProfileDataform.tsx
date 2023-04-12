@@ -1,12 +1,12 @@
 import React from "react";
 import {ProfileType} from "../../../redux/store";
 import {reduxForm} from "redux-form";
+import {createField, Input} from "../../common/FormsControls/FormsControls";
 
 
 type ProfileDataType = {
     profile: ProfileType
     goToEditMode: () => void
-
 
 }
 
@@ -16,7 +16,7 @@ export const ProfileDataForm = (props: ProfileDataType) => {
             <button onClick={props.goToEditMode}>save</button>
         </div>
         <div>
-            {/*<b>Full name</b>:{createField("Full name", 'fullName', [], Input)}*/}
+            <b>Full name</b>:{createField("Full name", 'fullName', [], Input,'','')}
         </div>
         <div>
             <b>Looking for a job</b>:{props.profile.lookingForAJob ? 'yes' : 'no'}
@@ -33,6 +33,9 @@ export const ProfileDataForm = (props: ProfileDataType) => {
         </div>
     </form>
 
+
 }
 // @ts-ignore
-const ProfileDataFormReduxForm = reduxForm({form:'edit-profile'})(ProfileDataForm)
+const ProfileDataFormReduxForm = reduxForm<ProfileDataType>({form:'edit-profile'})(ProfileDataForm)
+
+export default ProfileDataFormReduxForm;
