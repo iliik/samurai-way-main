@@ -33,7 +33,7 @@ export const ProfileData = (props: ProfileDataType) => {
         <div>
             <b>Contact</b>:{Object.keys(props.profile.contacts).map(key => {
             // @ts-ignore
-            return <Contact key={key} contactsTitle={key} contactValue={props.profile.contacts[key]}/>
+            return<Contact key={key} contactsTitle={key} contactValue={props.profile.contacts[key]}/>
         })}
 
         </div>
