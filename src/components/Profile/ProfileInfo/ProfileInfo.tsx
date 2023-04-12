@@ -6,6 +6,7 @@ import {ProfileStatusWithHooks} from "./ProfileStatusWithHooks";
 import usersPhoto from "../../../assest/images/User.png";
 import {ProfileData} from "../ProfileInfo/ProfileData";
 import {Contact} from "..//ProfileInfo/Contact";
+import {ProfileDataForm} from "src/components/Profile/ProfileInfo/ProfileDataform";
 
 
 export type ProfileInfoType = {
@@ -30,18 +31,17 @@ export const ProfileInfo = (props: ProfileInfoType) => {
     return (
         <div>
             <div>
-                <img
-                    src="https://images.pexels.com/photos/531880/pexels-photo-531880.jpeg?cs=srgb&dl=pexels-pixabay-531880.jpg&fm=jpg"/>
+                {/*<img src="https://images.pexels.com/photos/531880/pexels-photo-531880.jpeg?cs=srgb&dl=pexels-pixabay-531880.jpg&fm=jpg"/>*/}
             </div>
             <div className={s.discripshenBloc}>
                 <p>{props.profile?.fullName}</p>
                 <img src={props.profile?.photos?.large || usersPhoto} className={s.mainPhoto}/>
                 {props.isOwner && <input type={'file'} onChange={onMainPhotoSelector}/>}
                 <div>
-                    <ProfileData profile={props.profile}/>
+                    {editMode ? <ProfileDataForm profile={props.profile}/> :  <ProfileData profile={props.profile}/>}
+
                     {/*<Contact contacts={props.profile.contacts}/>*/}
                 </div>
-
                 <ProfileStatusWithHooks status={props.status} updateStatus={props.updateStatus}/>
             </div>
         </div>
