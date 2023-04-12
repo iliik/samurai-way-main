@@ -7,11 +7,12 @@ import {createField, Input, Textarea} from "../../common/FormsControls/FormsCont
 type ProfileDataType = {
     profile: ProfileType
     goToEditMode: () => void
+    onSubmit:(formData:any)=>void
 
 }
 
-export const ProfileDataForm = (props: ProfileDataType) => {
-    return <form>
+export const ProfileDataForm = (props: ProfileDataType,handleSubmit:()=>void) => {
+    return <form onSubmit={handleSubmit}>
         <div>
             <button onClick={props.goToEditMode}>save</button>
         </div>

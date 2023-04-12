@@ -17,7 +17,7 @@ type FormDataType = {
     rememberMe: boolean
 }
 
-type OwnPropsType = {
+export type OwnPropsType = {
     handleSubmit: () => void
 }
 
@@ -33,7 +33,6 @@ export const LoginForm: React.FC<MixFromPropsType> = (props) => {
 
         {createField("Email", "email", [required], Input,'','')}
         {createField("Password", 'password', [required], Input, '',{type: 'password'})}
-        {/*{createField( "RememberMe", "rememberMe",[], Input, "", {type: 'checkbox'})}*/}
         <div>
             <Field type={'checkbox'} name={'rememberMe'} component={Input} />remember me
         </div>
