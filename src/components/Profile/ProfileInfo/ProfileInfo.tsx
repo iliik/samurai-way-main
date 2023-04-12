@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import s from './ProfileInfo.module.css'
 import PreloaderImg from "../../common/Preloader/Preloader";
 import {ProfileType} from "../../../redux/store";
@@ -6,7 +6,7 @@ import {ProfileStatusWithHooks} from "./ProfileStatusWithHooks";
 import usersPhoto from "../../../assest/images/User.png";
 import {ProfileData} from "../ProfileInfo/ProfileData";
 import {Contact} from "..//ProfileInfo/Contact";
-import {ProfileDataForm} from "src/components/Profile/ProfileInfo/ProfileDataform";
+import {ProfileDataForm} from "../ProfileInfo/ProfileDataform";
 
 
 export type ProfileInfoType = {
@@ -19,6 +19,7 @@ export type ProfileInfoType = {
 
 export const ProfileInfo = (props: ProfileInfoType) => {
 
+    const [editMode, setEditMode] = useState(false)
     if (!props.profile) {
         return <PreloaderImg/>
     }
@@ -38,7 +39,7 @@ export const ProfileInfo = (props: ProfileInfoType) => {
                 <img src={props.profile?.photos?.large || usersPhoto} className={s.mainPhoto}/>
                 {props.isOwner && <input type={'file'} onChange={onMainPhotoSelector}/>}
                 <div>
-                    {editMode ? <ProfileDataForm profile={props.profile}/> :  <ProfileData profile={props.profile}/>}
+                    {editMode ? <ProfileDataForm profile={props.profile}/> : <ProfileData goToEditMode={()=>{setEditMode(true)}} profile={props.profile}  isOwner={props.isOwner} />}
 
                     {/*<Contact contacts={props.profile.contacts}/>*/}
                 </div>

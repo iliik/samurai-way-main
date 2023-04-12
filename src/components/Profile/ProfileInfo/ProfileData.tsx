@@ -4,10 +4,17 @@ import {ProfileType} from "../../../redux/store";
 
 type ProfileDataType = {
     profile: ProfileType
+    isOwner: boolean
+    goToEditMode: () => void
 }
 
 export const ProfileData = (props: ProfileDataType) => {
+
+
     return <div>
+        {props.isOwner && <div>
+            <button onClick={props.goToEditMode}>edit</button>
+        </div>}
         <div>
             <b>Full name</b>:{props.profile.fullName}
         </div>
