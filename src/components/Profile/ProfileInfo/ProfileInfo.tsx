@@ -36,6 +36,9 @@ export const ProfileInfo = (props: ProfileInfoType) => {
                 {props.isOwner && <input type={'file'} onChange={onMainPhotoSelector}/>}
                 <div>
                     <div>
+                        <b>Full name</b>:{props.profile.fullName}
+                    </div>
+                    <div>
                         <b>Looking for a job</b>:{props.profile.lookingForAJob ? 'yes' : 'no'}
                     </div>
                     {props.profile.lookingForAJob &&
@@ -44,12 +47,11 @@ export const ProfileInfo = (props: ProfileInfoType) => {
                         </div>
                     }
                     <div>
-                        <b>About me</b>:{props.profile.aboutMe ? 'yes' : 'no'}
+                        <b>About me</b>:{props.profile.aboutMe}
                     </div>
                     <div>
-                        <b>Looking for a job</b>:{props.profile.lookingForAJob ? 'yes' : 'no'}
+                        <b>Contacts</b>:{props.profile.contacts}
                     </div>
-
                 </div>
                 <ProfileStatusWithHooks status={props.status} updateStatus={props.updateStatus}/>
             </div>
