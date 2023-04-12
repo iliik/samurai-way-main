@@ -17,18 +17,16 @@ export const profileAPI = {
         return instance.get(`profile/status/` + userId)
     },
     updateStatus(status: string) {
-        return instance.put(`status/`, {status})
+        return instance.put(`profile/status/`, {status: status})
     },
     savePhoto(photos: any) {
         let formDate = new FormData()
-        formDate.append('image',photos)
-        return instance.put(`profile/photo/`,formDate,{
-            headers:{
-                'Content-Type':'multipart/form-data'
-            }
+        formDate.append('image', photos)
+        return instance.put(`profile/photo/`, formDate, {
+            headers: {'Content-Type': 'multipart/form-data'}
         })
     },
-    saveProfile(profile: string) {
+    saveProfile(profile: {}) {
         return instance.put(`profile/`, profile)
     },
 
@@ -38,7 +36,7 @@ export const authAPI = {
     me() {
         return instance.get(`auth/me `)
     },
-    login(email: null, password: null, rememberMe: null) {
+    login(email: '', password: '', rememberMe: false) {
         return instance.post(`auth/login `, {email, password, rememberMe})
     },
     logout() {

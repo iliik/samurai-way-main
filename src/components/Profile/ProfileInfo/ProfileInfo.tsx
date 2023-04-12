@@ -6,6 +6,7 @@ import {ProfileStatusWithHooks} from "./ProfileStatusWithHooks";
 import usersPhoto from "../../../assest/images/User.png";
 import {ProfileData} from "../ProfileInfo/ProfileData";
 import {ProfileDataForm} from "../ProfileInfo/ProfileDataform";
+import {Contact} from "../../../components/Profile/ProfileInfo/Contact";
 
 
 export type ProfileInfoType = {

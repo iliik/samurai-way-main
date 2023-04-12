@@ -37,6 +37,7 @@ export type ProfilePageType = {
     status: string
     newPostText:string
     savePhoto:any
+    saveProfile: any
 }
 
 export type ProfileType = {
