@@ -1,11 +1,12 @@
 import React from "react"
 import {Field, InjectedFormProps, reduxForm} from "redux-form";
-import {createField, Input} from "../components/common/FormsControls/FormsControls";
+import {createField, CreateFieldType, Input} from "../components/common/FormsControls/FormsControls";
 import {connect} from "react-redux";
 import {Navigate} from "react-router-dom";
 import {AppStateType} from "../redux/redux-store";
 import style from './../components/common/FormsControls/FormsControl.module.css'
 import {Dispatch} from "redux";
+import {required} from "../utils/validator/validators";
 
 
 
@@ -24,16 +25,17 @@ export type DispatchPropsType = {
     onSubmit: (data: FormDataType, dispatch: Dispatch<any>, props: OwnPropsType) => void
 }
 
-type MixFromPropsType = OwnPropsType & DispatchPropsType & InjectedFormProps<FormDataType, OwnPropsType>
+type MixFromPropsType = CreateFieldType & OwnPropsType & DispatchPropsType & InjectedFormProps<FormDataType, OwnPropsType>
 
 
 export const LoginForm: React.FC<MixFromPropsType> = (props) => {
     return <form onSubmit={props.handleSubmit}>
-        {/*{createField("Email", "email", [required], Input)}*/}
-        {/*{createField("Password", 'password', [required], Input, {type: 'password'})}*/}
-        {/*{createField(null, "rememberMe", [], Input, {type: 'checkbox'}, "remember me")}*/}
+
+        {createField("Email", "email", [required], Input,'','')}
+        {createField("Password", 'password', [required], Input, '',{type: 'password'})}
+        {/*{createField( "RememberMe", "rememberMe",[], Input, "", {type: 'checkbox'})}*/}
         <div>
-            <Field type={'checkbox'} name={'rememberMe'} component={Input}/>remember me
+            <Field type={'checkbox'} name={'rememberMe'} component={Input} />remember me
         </div>
         {props.error && <div className={style.formError}>
             {props.error}

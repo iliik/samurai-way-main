@@ -1,6 +1,6 @@
 import React from 'react';
 
-export const required = (value: any) => {
+export const required = (value: number) => {
     if (value) return undefined
 
     return 'Field is required '

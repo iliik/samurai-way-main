@@ -1,6 +1,5 @@
 import React from "react";
 import {ProfileType} from "../../../redux/store";
-import {createField, Input} from "./../../common/FormsControls/FormsControls";
 import {reduxForm} from "redux-form";
 
 
@@ -33,6 +32,7 @@ export const ProfileDataForm = (props: ProfileDataType) => {
         <div>
         </div>
     </form>
+
 }
 // @ts-ignore
 const ProfileDataFormReduxForm = reduxForm({form:'edit-profile'})(ProfileDataForm)

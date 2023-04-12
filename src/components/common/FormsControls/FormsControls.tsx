@@ -35,12 +35,12 @@ export type CreateFieldType = {
     text: string
     props: {}
 }
-export const createField = (props: CreateFieldType) => (
-    <div><Field placeholder={props.placeholder}
-                name={props.name}
-                component={props.component}
-                validate={props.validate}
-                {...props.props}
-    /> {props.text}</div>
+export const createField = (placeholder: string, name: string, validate: ((value: number) => (undefined | string))[], component: (props: any) => JSX.Element, text: "", props: {}) => (
+    <div><Field placeholder={placeholder}
+                name={name}
+                component={component}
+                validate={validate}
+                {...props}
+    /> {text}</div>
 )
 
