@@ -4,8 +4,11 @@ import PreloaderImg from "../../common/Preloader/Preloader";
 import {ProfileType} from "../../../redux/store";
 import {ProfileStatusWithHooks} from "./ProfileStatusWithHooks";
 import usersPhoto from "../../../assest/images/User.png";
+import {ProfileData} from "../ProfileInfo/ProfileData";
+import {Contact} from "..//ProfileInfo/Contact";
 
-type ProfileInfoType = {
+
+export type ProfileInfoType = {
     profile: ProfileType
     status: string
     updateStatus: (status: string) => void
@@ -35,26 +38,13 @@ export const ProfileInfo = (props: ProfileInfoType) => {
                 <img src={props.profile?.photos?.large || usersPhoto} className={s.mainPhoto}/>
                 {props.isOwner && <input type={'file'} onChange={onMainPhotoSelector}/>}
                 <div>
-                    <div>
-                        <b>Full name</b>:{props.profile.fullName}
-                    </div>
-                    <div>
-                        <b>Looking for a job</b>:{props.profile.lookingForAJob ? 'yes' : 'no'}
-                    </div>
-                    {props.profile.lookingForAJob &&
-                        <div>
-                            <b>My professional skills</b>:{props.profile.lookingForAJobDescription}
-                        </div>
-                    }
-                    <div>
-                        <b>About me</b>:{props.profile.aboutMe}
-                    </div>
-                    <div>
-                        <b>Contacts</b>:{props.profile.contacts}
-                    </div>
+                    <ProfileData profile={props.profile}/>
+                    {/*<Contact contacts={props.profile.contacts}/>*/}
                 </div>
+
                 <ProfileStatusWithHooks status={props.status} updateStatus={props.updateStatus}/>
             </div>
         </div>
     )
+
 }
