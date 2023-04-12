@@ -1,18 +1,13 @@
 import React from "react";
-type ProfileProps ={
-    contacts: {
-        github: string,
-        vk: string
-        facebook:string,
-        instagram:string,
-        twitter:string,
-        website:string,
-        youtube:string,
-        mainLink:string,
-    }
+import {ProfileType} from "../../../redux/store";
+
+type ProfileProps = {
+    contactsTitle: {}
+    contactValue:{}
+    profile: ProfileType
 }
-export const Contact = (props:ProfileProps) => {
-    return <div><b>{props.contacts.youtube}</b></div>
+export const Contact = (props: ProfileProps) => {
+    return <div> <b> {props.contactsTitle}</b>:{props.contactValue}</div>
 
 }
 

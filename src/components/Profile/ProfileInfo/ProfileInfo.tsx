@@ -52,9 +52,8 @@ export const ProfileInfo = (props: ProfileInfoType) => {
                             goToEditMode={()=>{setEditMode(true)}}
                             profile={props.profile}
                             isOwner={props.isOwner} />}
-
-                    {/*<Contact contacts={props.profile.contacts}/>*/}
                 </div>
+
                 <ProfileStatusWithHooks
                     status={props.status}
                     updateStatus={props.updateStatus}/>
