@@ -27,11 +27,30 @@ export const ProfileInfo = (props: ProfileInfoType) => {
     return (
         <div>
             <div>
-                <img src="https://images.pexels.com/photos/531880/pexels-photo-531880.jpeg?cs=srgb&dl=pexels-pixabay-531880.jpg&fm=jpg"/></div>
+                <img
+                    src="https://images.pexels.com/photos/531880/pexels-photo-531880.jpeg?cs=srgb&dl=pexels-pixabay-531880.jpg&fm=jpg"/>
+            </div>
             <div className={s.discripshenBloc}>
                 <p>{props.profile?.fullName}</p>
                 <img src={props.profile?.photos?.large || usersPhoto} className={s.mainPhoto}/>
                 {props.isOwner && <input type={'file'} onChange={onMainPhotoSelector}/>}
+                <div>
+                    <div>
+                        <b>Looking for a job</b>:{props.profile.lookingForAJob ? 'yes' : 'no'}
+                    </div>
+                    {props.profile.lookingForAJob &&
+                        <div>
+                            <b>My professional skills</b>:{props.profile.lookingForAJobDescription}
+                        </div>
+                    }
+                    <div>
+                        <b>About me</b>:{props.profile.aboutMe ? 'yes' : 'no'}
+                    </div>
+                    <div>
+                        <b>Looking for a job</b>:{props.profile.lookingForAJob ? 'yes' : 'no'}
+                    </div>
+
+                </div>
                 <ProfileStatusWithHooks status={props.status} updateStatus={props.updateStatus}/>
             </div>
         </div>
