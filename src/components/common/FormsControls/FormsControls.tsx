@@ -27,7 +27,7 @@ export const Input = (props: any) => {
     return <FormControl {...props} ><input {...input} {...restProps}/></FormControl>
 }
 
-type CreateFieldType = {
+export type CreateFieldType = {
     placeholder: string
     name: string
     component: () => void

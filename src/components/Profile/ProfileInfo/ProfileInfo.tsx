@@ -39,7 +39,7 @@ export const ProfileInfo = (props: ProfileInfoType) => {
                 <img src={props.profile?.photos?.large || usersPhoto} className={s.mainPhoto}/>
                 {props.isOwner && <input type={'file'} onChange={onMainPhotoSelector}/>}
                 <div>
-                    {editMode ? <ProfileDataForm profile={props.profile}/> : <ProfileData goToEditMode={()=>{setEditMode(true)}} profile={props.profile}  isOwner={props.isOwner} />}
+                    {editMode ? <ProfileDataForm profile={props.profile} goToEditMode={()=>{setEditMode(true)}}/> : <ProfileData goToEditMode={()=>{setEditMode(true)}} profile={props.profile}  isOwner={props.isOwner} />}
 
                     {/*<Contact contacts={props.profile.contacts}/>*/}
                 </div>

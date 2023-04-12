@@ -48,7 +48,6 @@ export const LoginForm: React.FC<MixFromPropsType> = (props) => {
 
 export const Login = (props: any) => {
     const onSubmit = (formData: FormDataType) => {
-
         // @ts-ignore
         props.login(formData.email, formData.password, formData.rememberMe)
     }
