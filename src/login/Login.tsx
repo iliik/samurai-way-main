@@ -33,9 +33,8 @@ export const LoginForm: React.FC<MixFromPropsType> = (props) => {
 
         {createField("Email", "email", [required], Input,'','')}
         {createField("Password", 'password', [required], Input, '',{type: 'password'})}
-        <div>
-            <Field type={'checkbox'} name={'rememberMe'} component={Input} />remember me
-        </div>
+        {createField("RememberMe", 'rememberMe', [required], Input, '',{type: 'checkbox'})}
+
         {props.error && <div className={style.formError}>
             {props.error}
         </div>

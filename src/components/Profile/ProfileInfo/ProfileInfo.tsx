@@ -1,11 +1,10 @@
-import React, {useState} from "react";
+import React, {ChangeEvent, useState} from "react";
 import s from './ProfileInfo.module.css'
 import PreloaderImg from "../../common/Preloader/Preloader";
 import {ProfileType} from "../../../redux/store";
 import {ProfileStatusWithHooks} from "./ProfileStatusWithHooks";
 import usersPhoto from "../../../assest/images/User.png";
 import {ProfileData} from "../ProfileInfo/ProfileData";
-import {Contact} from "..//ProfileInfo/Contact";
 import {ProfileDataForm} from "../ProfileInfo/ProfileDataform";
 
 
@@ -24,8 +23,10 @@ export const ProfileInfo = (props: ProfileInfoType) => {
         return <PreloaderImg/>
     }
 
-    const onMainPhotoSelector = (e: any) => {
+    const onMainPhotoSelector = (e: ChangeEvent<HTMLInputElement>) => {
+        // @ts-ignore
         if (e.target.files.length) {
+            // @ts-ignore
             props.savePhoto(e.target.files[0])
         }
     }
@@ -42,11 +43,20 @@ export const ProfileInfo = (props: ProfileInfoType) => {
                 <img src={props.profile?.photos?.large || usersPhoto} className={s.mainPhoto}/>
                 {props.isOwner && <input type={'file'} onChange={onMainPhotoSelector}/>}
                 <div>
-                    {editMode ? <ProfileDataForm profile={props.profile} goToEditMode={()=>{setEditMode(true)}} onSubmit={onSubmit} /> : <ProfileData goToEditMode={()=>{setEditMode(true)}} profile={props.profile}  isOwner={props.isOwner} />}
+                    {editMode ? <ProfileDataForm
+                        profile={props.profile}
+                        goToEditMode={()=>{setEditMode(true)}}
+                        onSubmit={onSubmit} />
+                        : <ProfileData
+                            goToEditMode={()=>{setEditMode(true)}}
+                            profile={props.profile}
+                            isOwner={props.isOwner} />}
 
                     {/*<Contact contacts={props.profile.contacts}/>*/}
                 </div>
-                <ProfileStatusWithHooks status={props.status} updateStatus={props.updateStatus}/>
+                <ProfileStatusWithHooks
+                    status={props.status}
+                    updateStatus={props.updateStatus}/>
             </div>
         </div>
     )
