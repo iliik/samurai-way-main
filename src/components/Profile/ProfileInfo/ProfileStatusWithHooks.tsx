@@ -1,4 +1,5 @@
-import React, {useEffect, useState} from "react";
+import React, {ChangeEvent, useEffect, useState} from "react";
+
 
 export const ProfileStatusWithHooks = (props: any) => {
 
@@ -18,7 +19,7 @@ export const ProfileStatusWithHooks = (props: any) => {
         props.updateStatus(status)
     }
 
-    const onStatusChange = (e: any) => {
+    const onStatusChange = (e: ChangeEvent<HTMLInputElement>) => {
         setStatus(e.currentTarget.value)
     }
 

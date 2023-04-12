@@ -14,6 +14,7 @@ export type ProfileInfoType = {
     updateStatus: (status: string) => void
     isOwner: boolean
     savePhoto: any
+    saveProfile: any
 }
 
 export const ProfileInfo = (props: ProfileInfoType) => {
@@ -39,7 +40,6 @@ export const ProfileInfo = (props: ProfileInfoType) => {
                 {/*<img src="https://images.pexels.com/photos/531880/pexels-photo-531880.jpeg?cs=srgb&dl=pexels-pixabay-531880.jpg&fm=jpg"/>*/}
             </div>
             <div className={s.discripshenBloc}>
-                <p>{props.profile?.fullName}</p>
                 <img src={props.profile?.photos?.large || usersPhoto} className={s.mainPhoto}/>
                 {props.isOwner && <input type={'file'} onChange={onMainPhotoSelector}/>}
                 <div>

@@ -43,7 +43,8 @@ let initialState = {
     status: '',
     newPostText: '',
     isOwner: true,
-    savePhoto: ''
+    savePhoto: '',
+    saveProfile:''
 }
 
 const profileReducer = (state: ProfilePageType = initialState, action: ActionsTypes): ProfilePageType => {
@@ -108,6 +109,13 @@ export const updateStatus = (status: string) => async (dispatch: Dispatch) => {
 }
 export const savePhoto = (file: any) => async (dispatch: Dispatch) => {
     let response = await profileAPI.savePhoto(file)
+
+    if (response.data.resultCode === 0) {
+        dispatch(savePhotoSuccess(response.data.data.photos))
+    }
+}
+export const saveProfile = (profile:any) => async (dispatch: Dispatch) => {
+    let response = await profileAPI.saveProfile(profile)
 
     if (response.data.resultCode === 0) {
         dispatch(savePhotoSuccess(response.data.data.photos))
