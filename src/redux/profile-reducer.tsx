@@ -45,7 +45,7 @@ let initialState = {
     newPostText: '',
     isOwner: true,
     savePhoto: '',
-    saveProfile:{} as ProfileType
+    saveProfile: {} as ProfileType
 }
 
 const profileReducer = (state: ProfilePageType = initialState, action: ActionsTypes): ProfilePageType => {
@@ -114,15 +114,15 @@ export const savePhoto = (file: any) => async (dispatch: Dispatch) => {
         dispatch(savePhotoSuccess(response.data.data.photos))
     }
 }
-export const saveProfile = (profile:ProfileType) => async (dispatch: Dispatch,getState:any) => {
-   const userId = getState().auth.userId
+export const saveProfile = (profile: ProfileType) => async (dispatch: Dispatch, getState: any) => {
+    const userId = getState().auth.userId
     const response = await profileAPI.saveProfile(profile)
 
     if (response.data.resultCode === 0) {
         // @ts-ignore
         dispatch(getUserProfile(userId))
     } else {
-        dispatch(stopSubmit('login', {_error: response.data.messages}))
+        dispatch(stopSubmit('edit-profile', {'contacts': {'facebook': response.data.messages}}))
     }
 }
 
