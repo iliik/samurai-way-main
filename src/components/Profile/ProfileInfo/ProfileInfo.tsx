@@ -33,8 +33,8 @@ export const ProfileInfo = (props: ProfileInfoType) => {
             props.savePhoto(e.target.files[0])
         }
     }
-    const onSubmit = async (formData:any) => {
-        await saveProfile(formData)
+    const onSubmit = (formData:any) => {
+         saveProfile(formData)
         setEditMode(false)
     }
     return (
