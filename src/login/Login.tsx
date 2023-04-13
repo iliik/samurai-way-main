@@ -1,5 +1,5 @@
 import React from "react"
-import {Field, InjectedFormProps, reduxForm} from "redux-form";
+import {InjectedFormProps, reduxForm} from "redux-form";
 import {createField, CreateFieldType, Input} from "../components/common/FormsControls/FormsControls";
 import {connect} from "react-redux";
 import {Navigate} from "react-router-dom";
@@ -7,7 +7,6 @@ import {AppStateType} from "../redux/redux-store";
 import style from './../components/common/FormsControls/FormsControl.module.css'
 import {Dispatch} from "redux";
 import {required} from "../utils/validator/validators";
-
 
 
 type FormDataType = {
@@ -53,7 +52,7 @@ export const Login = (props: any) => {
     }
     if (props.isAuth) {
 
-        return <Navigate to={'profile'}/>
+        return <Navigate to={'/profile'}/>
     }
     return <div>
         <h1>Login</h1>

@@ -7,6 +7,7 @@ type ProfileDataType = {
     profile: ProfileType
     isOwner: boolean
     goToEditMode: () => void
+
 }
 
 export const ProfileData = (props: ProfileDataType) => {
@@ -20,7 +21,7 @@ export const ProfileData = (props: ProfileDataType) => {
             <b>Full name</b>:{props.profile.fullName}
         </div>
         <div>
-            <b>Looking for a job</b>:{props.profile.lookingForAJob ? 'yes' : 'no'}
+            <b>Looking for a job</b>:{!props.profile.lookingForAJob ? 'yes' : 'no'}
         </div>
         {props.profile.lookingForAJob &&
             <div>
@@ -31,7 +32,7 @@ export const ProfileData = (props: ProfileDataType) => {
             <b>About me</b>:{props.profile.aboutMe}
         </div>
         <div>
-            <b>Contact</b>:{Object.keys(props.profile.contacts).map(key => {
+            <b>Contact</b>:{Object.keys(props.profile).map(key => {
             // @ts-ignore
             return<Contact key={key} contactsTitle={key} contactValue={props.profile.contacts[key]}/>
         })}

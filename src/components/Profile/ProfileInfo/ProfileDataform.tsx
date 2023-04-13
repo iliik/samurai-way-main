@@ -5,16 +5,16 @@ import {createField, Input, Textarea} from "../../common/FormsControls/FormsCont
 
 
 type ProfileDataType = {
+
     profile: ProfileType
     goToEditMode: () => void
     onSubmit:(formData:any)=>void
-
+    initialValue:ProfileType
 }
 
 export const ProfileDataForm = (props: ProfileDataType,handleSubmit:()=>void) => {
     return <form onSubmit={handleSubmit}>
-        <div>
-            <button onClick={props.goToEditMode}>save</button>
+        <div><button onClick={props.goToEditMode}>save</button>
         </div>
         <div>
             <b>Full name</b>:
@@ -35,6 +35,12 @@ export const ProfileDataForm = (props: ProfileDataType,handleSubmit:()=>void) =>
             {createField("About me", 'aboutMe', [], Textarea, '', '')}
         </div>
         <div>
+            <b>Contact</b>:{Object.keys(props.profile).map(key => {
+            // @ts-ignore
+            return<div key={key} className={s.contacts}>
+                <b>{key}:{createField("Full name", 'contacts.'+key, [], Input, '', '')}</b>
+            </div>
+        })}
         </div>
     </form>
 

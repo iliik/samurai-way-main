@@ -56,7 +56,7 @@ export const login = (email: '', password: '', rememberMe: false) => async (disp
         // @ts-ignore
         dispatch(getAuthUserData())
     } else {
-        let message = response.data.messages.length > 0 ? response.data.messages.length [0] : 'Some error'
+        let message = response.data.messages.length > 0 ? response.data.messages[0] : 'Some error'
         dispatch(stopSubmit('login', {_error: message}))
     }
 }

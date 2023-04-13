@@ -1,6 +1,7 @@
 import {ActionsTypes, PostType, ProfilePageType, ProfileType} from "./store";
 import {Dispatch} from "redux";
 import {profileAPI, usersAPI} from "../api/Api";
+import {stopSubmit} from "redux-form";
 
 
 const ADD_POST = 'ADD-POST';
@@ -44,7 +45,7 @@ let initialState = {
     newPostText: '',
     isOwner: true,
     savePhoto: '',
-    saveProfile:''
+    saveProfile:{} as ProfileType
 }
 
 const profileReducer = (state: ProfilePageType = initialState, action: ActionsTypes): ProfilePageType => {
@@ -92,7 +93,6 @@ export const savePhotoSuccess = (photos: any) => ({type: SET_PHOTOS, photos} as 
 
 export const getUserProfile = (userId: number) => async (dispatch: Dispatch) => {
     let response = await usersAPI.getProfile(userId)
-
     dispatch(setUserProfile(response.data))
 }
 export const getStatus = (userId: number) => async (dispatch: Dispatch) => {
@@ -114,11 +114,15 @@ export const savePhoto = (file: any) => async (dispatch: Dispatch) => {
         dispatch(savePhotoSuccess(response.data.data.photos))
     }
 }
-export const saveProfile = (profile:any) => async (dispatch: Dispatch) => {
-    let response = await profileAPI.saveProfile(profile)
+export const saveProfile = (profile:ProfileType) => async (dispatch: Dispatch,getState:any) => {
+   const userId = getState().auth.userId
+    const response = await profileAPI.saveProfile(profile)
 
     if (response.data.resultCode === 0) {
-        dispatch(savePhotoSuccess(response.data.data.photos))
+        // @ts-ignore
+        dispatch(getUserProfile(userId))
+    } else {
+        dispatch(stopSubmit('login', {_error: response.data.messages}))
     }
 }
 

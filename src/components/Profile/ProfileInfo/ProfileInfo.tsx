@@ -6,7 +6,7 @@ import {ProfileStatusWithHooks} from "./ProfileStatusWithHooks";
 import usersPhoto from "../../../assest/images/User.png";
 import {ProfileData} from "../ProfileInfo/ProfileData";
 import {ProfileDataForm} from "../ProfileInfo/ProfileDataform";
-import {Contact} from "../../../components/Profile/ProfileInfo/Contact";
+import {saveProfile} from "../../../redux/profile-reducer";
 
 
 export type ProfileInfoType = {
@@ -15,7 +15,8 @@ export type ProfileInfoType = {
     updateStatus: (status: string) => void
     isOwner: boolean
     savePhoto: any
-    saveProfile: any
+    saveProfile: ProfileType
+
 }
 
 export const ProfileInfo = (props: ProfileInfoType) => {
@@ -33,7 +34,8 @@ export const ProfileInfo = (props: ProfileInfoType) => {
         }
     }
     const onSubmit = (formData:any) => {
-        console.log(formData)
+        saveProfile(formData)
+        setEditMode(false)
     }
     return (
         <div>
@@ -45,15 +47,15 @@ export const ProfileInfo = (props: ProfileInfoType) => {
                 {props.isOwner && <input type={'file'} onChange={onMainPhotoSelector}/>}
                 <div>
                     {editMode ? <ProfileDataForm
+                        initialValue={props.profile}
                         profile={props.profile}
                         goToEditMode={()=>{setEditMode(true)}}
                         onSubmit={onSubmit} />
                         : <ProfileData
                             goToEditMode={()=>{setEditMode(true)}}
                             profile={props.profile}
-                            isOwner={props.isOwner} />}
+                            isOwner={props.isOwner}/>}
                 </div>
-
                 <ProfileStatusWithHooks
                     status={props.status}
                     updateStatus={props.updateStatus}/>

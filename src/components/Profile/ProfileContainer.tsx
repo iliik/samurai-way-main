@@ -89,7 +89,7 @@ let mapStateToProps = (state: AppStateType): MapStateToProps => ({
     isAuth: state.auth.isAuth,
     isOwner: state.profilePage.isOwner,
     savePhoto: state.profilePage.savePhoto,
-    saveProfile: state.profilePage.saveProfile
+    saveProfile: state.profilePage.profile
 })
 
 export default compose<FC>(

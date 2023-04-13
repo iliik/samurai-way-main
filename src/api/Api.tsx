@@ -1,4 +1,5 @@
 import axios from "axios";
+import {ProfileType} from "../redux/store";
 
 
 export const instance = axios.create({
@@ -19,14 +20,14 @@ export const profileAPI = {
     updateStatus(status: string) {
         return instance.put(`profile/status/`, {status: status})
     },
-    savePhoto(photos: any) {
+    savePhoto(photos: string) {
         let formDate = new FormData()
         formDate.append('image', photos)
         return instance.put(`profile/photo/`, formDate, {
             headers: {'Content-Type': 'multipart/form-data'}
         })
     },
-    saveProfile(profile: {}) {
+    saveProfile(profile:ProfileType) {
         return instance.put(`profile/`, profile)
     },
 
