@@ -122,7 +122,8 @@ export const saveProfile = (profile: ProfileType) => async (dispatch: Dispatch, 
         // @ts-ignore
         dispatch(getUserProfile(userId))
     } else {
-        dispatch(stopSubmit('edit-profile', {'contacts': {'facebook': response.data.messages}}))
+        dispatch(stopSubmit('edit-profile', {'contacts': {'facebook': response.data.messages[0]}}))
+        return  Promise.reject(response.data.messages[0])
     }
 }
 
